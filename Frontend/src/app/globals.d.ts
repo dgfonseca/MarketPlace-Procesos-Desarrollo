@@ -1,0 +1,12 @@
+declare const API_IP = "http://localhost:8080/";
+declare const ADMINISTRADOR = "";
+declare const USUARIO = "";
+declare const PEDIDO_USUARIO = "";
+declare const CANTIDAD_PRODUCTO_CATALOGO = "";
+declare const PRODUCTO_CATALOGO = "";
+declare const CANASTA = "";
+declare const PRODUCTO = "";
+declare const CANTIDAD_PRODUCTO = "";
+declare const OFERTA_PRODUCTOR = "";
+declare const PEDIDO_PRODUCTOR = "";
+declare const PRODUCTOR = "";

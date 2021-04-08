@@ -4,8 +4,8 @@ import {ProductorCreateComponent} from "./productor-create/productor-create.comp
 import {ProductorDetailComponent} from "./productor-detail/productor-detail.component";
 import {ProductorListComponent} from "./productor-list/productor-list.component";
 import {ProductorUpdateComponent} from "./productor-update/productor-update.component";
-import {PedidoListComponent} from "./pedido-list/pedido-list.component";
 import {OfertaListComponent} from "./oferta-list/oferta-list.component";
+import {PedidoProductorListComponent} from "./pedido-productor-list/pedido-productor-list.component";
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: ':id/pedido/list',
-    component: PedidoListComponent
+    component: PedidoProductorListComponent
   }
 ];
 
