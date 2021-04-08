@@ -1,0 +1,11 @@
+import {Usuario} from "../cliente/usuario";
+import {Oferta} from "../../catalogo/oferta/oferta";
+
+export class Productor extends Usuario{
+  direccion:string;
+  fotoProveedot:string;
+  activado:boolean;
+  numeroTelefono:string;
+  descripcion:string;
+  ofertasProductor: Oferta[];
+}
