@@ -12,22 +12,22 @@ export class PedidoClienteService {
   }
 
   getPedidoCliente(id: number): Observable<PedidoCliente> {
-    return this.http.get<PedidoCliente>(API_IP + PEDIDO_USUARIO + id)
+    return this.http.get<PedidoCliente>(API_IP + PEDIDO_CLIENTE + id)
   }
 
   getPedidosCliente(): Observable<PedidoCliente[]> {
-    return this.http.get<PedidoCliente[]>(API_IP + PEDIDO_USUARIO)
+    return this.http.get<PedidoCliente[]>(API_IP + PEDIDO_CLIENTE)
   }
 
-  createPedidoCliente(pedidoUsuario: PedidoCliente) {
-    return this.http.post<PedidoCliente>(API_IP + PEDIDO_USUARIO, pedidoUsuario)
+  createPedidoCliente(pedidoCliente: PedidoCliente) {
+    return this.http.post<PedidoCliente>(API_IP + PEDIDO_CLIENTE, pedidoCliente)
   }
 
-  updatePedidoCliente(id: number, pedidoUsuario: PedidoCliente) {
-    return this.http.put<PedidoCliente>(API_IP + PEDIDO_USUARIO + id, pedidoUsuario)
+  updatePedidoCliente(id: number, pedidoCliente: PedidoCliente) {
+    return this.http.put<PedidoCliente>(API_IP + PEDIDO_CLIENTE + id, pedidoCliente)
   }
 
   deletePedidoCliente(id: number) {
-    return this.http.delete<PedidoCliente>(API_IP + PEDIDO_USUARIO + id)
+    return this.http.delete<PedidoCliente>(API_IP + PEDIDO_CLIENTE + id)
   }
 }

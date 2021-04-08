@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Productor} from "./productor";
 import {PedidoProductor} from "../../catalogo/pedido/pedido-productor/pedido-productor";
-import {OfertaProductor} from "../../catalogo/oferta/oferta-productor";
+import {Oferta} from "../../catalogo/oferta/oferta";
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class ProductorService {
     return this.http.get<PedidoProductor[]>(API_IP + PRODUCTOR + id + "/pedidos")
   }
 
-  getOfertasProductor(id: number): Observable<OfertaProductor[]> {
-    return this.http.get<OfertaProductor[]>(API_IP + PRODUCTOR + id + "/ofertas")
+  getOfertasProductor(id: number): Observable<Oferta[]> {
+    return this.http.get<Oferta[]>(API_IP + PRODUCTOR + id + "/ofertas")
   }
 }

@@ -1,5 +1,5 @@
 import {Usuario} from "../cliente/usuario";
-import {OfertaProductor} from "../../catalogo/oferta/oferta-productor";
+import {Oferta} from "../../catalogo/oferta/oferta";
 
 export class Productor extends Usuario{
   direccion:string;
@@ -7,5 +7,5 @@ export class Productor extends Usuario{
   activado:boolean;
   numeroTelefono:string;
   descripcion:string;
-  ofertasProductor: OfertaProductor[];
+  ofertasProductor: Oferta[];
 }

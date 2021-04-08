@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Canasta} from "../catalogo/canasta/canasta";
 import {Usuario} from "../usuario/cliente/usuario";
-import {OfertaProductor} from "../catalogo/oferta/oferta-productor";
+import {Oferta} from "../catalogo/oferta/oferta";
 import {PedidoCliente} from "../catalogo/pedido/pedido-cliente/pedido-cliente";
 import {PedidoProductor} from "../catalogo/pedido/pedido-productor/pedido-productor";
 import {ProductoCatalogo} from "../catalogo/producto-catalogo/producto-catalogo";
@@ -26,8 +26,8 @@ export class AdminService {
     return this.http.get<Usuario[]>(API_IP + ADMINISTRADOR)
   }
 
-  getOfertas(): Observable<OfertaProductor[]> {
-    return this.http.get<OfertaProductor[]>(API_IP + ADMINISTRADOR)
+  getOfertas(): Observable<Oferta[]> {
+    return this.http.get<Oferta[]>(API_IP + ADMINISTRADOR)
   }
 
   getPedidosClientes(): Observable<PedidoCliente[]> {
