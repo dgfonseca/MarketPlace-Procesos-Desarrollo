@@ -1,0 +1,65 @@
+<div class="column">
+  <h3 class="title">Registro de producto del catalogo</h3>
+  <div class="box">
+    <form id="form">
+      <div class="field">
+        <div class="control">
+          <input
+            class="input is-medium"
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            autofocus=""
+            required
+          />
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            class="input is-medium"
+            type="url"
+            name="fotoProducto"
+            placeholder="Foto Producto"
+            autofocus=""
+            required
+          />
+        </div>
+      </div>
+      <div class="field columns mb-0">
+        <div class="control column">
+          <input
+            class="input is-medium"
+            type="text"
+            name="unidad"
+            placeholder="Unidad"
+            required
+          />
+        </div>
+        <div class="control column">
+          <input
+            class="input is-medium"
+            type="number"
+            name="precio"
+            min="0"
+            step=".01"
+            placeholder="Precio"
+            required
+          />
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <button class="button is-danger is-medium is-fullwidth" id="cancelar">
+            Cancelar
+          </button>
+        </div>
+        <div class="column">
+          <button class="button is-info is-medium is-fullwidth" id="crear">
+            Crear producto
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
