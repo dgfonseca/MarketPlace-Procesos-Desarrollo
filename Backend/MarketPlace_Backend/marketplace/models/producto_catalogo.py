@@ -1,4 +1,5 @@
 from django.db import models
+from .cantidad_producto_catalogo import cantidad_producto_catalogo as r_cantidad_producto_catalogo
 from .canasta import canasta as r_canasta
 
 class producto_catalogo(models.Model):
