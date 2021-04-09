@@ -4,3 +4,9 @@
 Backend/MarketPlace_Backend/.idea/workspace.xml
 */venv
 */.vscode
+venv/
+Backend/MarketPlace_Backend/MarketPlace_Backend/marketplace/models/__pycache__/
+Backend/MarketPlace_Backend/MarketPlace_Backend/marketplace/__pycache__/
+Backend/MarketPlace_Backend/MarketPlace_Backend/marketplace/migrations/__pycache__/
+Backend/MarketPlace_Backend/MarketPlace_Backend/marketplace/views/__pycache__/
+Backend/MarketPlace_Backend/MarketPlace_Backend/__pycache__/

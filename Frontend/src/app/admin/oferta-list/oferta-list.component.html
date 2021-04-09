@@ -19,11 +19,11 @@
         </div>
       </div>
     </div>
-    <div class="columns is-vcentered">
+    <div class="columns is-vcentered" *ngFor="let productor of productores">
       <div class="column is-9 has-text-left is-size-3">
         <a
-          href=""
-        >Nombre</a
+          href="/usuario/productor/detail/{{productor.id}}"
+        >{{productor.nombre}}</a
         >
       </div>
       <div class="column is-3">

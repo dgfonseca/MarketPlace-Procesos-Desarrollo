@@ -13,7 +13,7 @@ export class ProductoCatalogoService {
   }
 
   getProductoCatalogo(id: number): Observable<ProductoCatalogo> {
-    return this.http.get<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id)
+    return this.http.get<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/")
   }
 
   getProductosCatalogo(): Observable<ProductoCatalogo[]> {
@@ -21,15 +21,15 @@ export class ProductoCatalogoService {
   }
 
   createProductoCatalogo(productoCatalogo: ProductoCatalogo) {
-    return this.http.post<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO, productoCatalogo)
+    return this.http.post<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO, productoCatalogo).subscribe()
   }
 
   updateProductoCatalogo(id: number, productoCatalogo: ProductoCatalogo) {
-    return this.http.put<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id, productoCatalogo)
+    return this.http.put<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/", productoCatalogo).subscribe()
   }
 
   deleteProductoCatalogo(id: number) {
-    return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id)
+    return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/").subscribe()
   }
 
 }

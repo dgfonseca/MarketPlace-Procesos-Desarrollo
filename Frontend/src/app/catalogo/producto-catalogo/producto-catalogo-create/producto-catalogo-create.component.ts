@@ -20,6 +20,7 @@ export class ProductoCatalogoCreateComponent implements OnInit {
     productoCatalogo.fotoProducto = (<HTMLInputElement>document.getElementsByName("fotoProducto")[0]).value;
     productoCatalogo.unidad = (<HTMLInputElement>document.getElementsByName("unidad")[0]).value;
     productoCatalogo.precioPorUnidad = parseFloat((<HTMLInputElement>document.getElementsByName("precio")[0]).value);
+    productoCatalogo.activado = true;
     this.productoCatalogoService.createProductoCatalogo(productoCatalogo);
     window.history.back();
   }
