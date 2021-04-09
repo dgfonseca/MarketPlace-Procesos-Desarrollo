@@ -2,3 +2,5 @@
 .DS_Store
 .idea
 Backend/MarketPlace_Backend/.idea/workspace.xml
+*/venv
+*/.vscode
