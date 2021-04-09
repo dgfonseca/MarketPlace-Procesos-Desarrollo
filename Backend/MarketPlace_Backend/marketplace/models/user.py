@@ -23,16 +23,19 @@ class UserManager(BaseUserManager):
         user.save(using=self.db)
         return user
 
-    def create_user(self, email, password, **extra_fields):
-        return self._create_user(email, password, False, False, True, ** extra_fields)
+    def create_user(self, email, password, is_staff, is_superuser, **extra_fields):
+        user = self._create_user(email, password, is_staff, is_superuser, True, ** extra_fields)
+        user.save(using=self.db)
+        return user
 
     def create_superuser(self, email, password, **extra_fields):
         user = self._create_user(email, password, True, True, True, **extra_fields)
-        user.save(self.db)
+        user.save(using=self.db)
         return user
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    user_id = models.AutoField(primary_key=True)
     email = models.EmailField(max_length=250, unique=True)
     name = models.CharField(max_length=250, blank=False, null=False)
     is_staff = models.BooleanField(default=False)
