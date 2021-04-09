@@ -10,10 +10,11 @@ from django.views.decorators.http import require_http_methods
 
 #@login_required
 @require_http_methods(["GET"])
+@csrf_exempt
 def productor_list(request):
     #if request.user.is_authenticated:
     productores_list = Productor.objects.values('direccion', 'fotoProveedor', 'numeroTelefono', 'descripcion',
-                                                    'user__email', 'user__name').all()
+                                                    'user__email', 'user__name', 'user__user_id').all()
     context = list(productores_list)
     return HttpResponse(json.dumps(context), content_type="application/json")
     #else:
@@ -22,10 +23,11 @@ def productor_list(request):
 
 #@login_required
 @require_http_methods(["GET"])
+@csrf_exempt
 def productor_detail(request, queryparams):
    # if request.user.is_authenticated:
     productor = Productor.objects.values('direccion', 'fotoProveedor', 'numeroTelefono', 'descripcion',
-                                             'user__email', 'user__name').filter(user__email=queryparams)
+                                             'user__email', 'user__name', 'user__user_id').filter(user__email=queryparams)
     context = list(productor)
     return HttpResponse(json.dumps(context), content_type="application/json")
     #else:
