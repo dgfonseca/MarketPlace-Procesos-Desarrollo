@@ -3,8 +3,9 @@ import {CantidadProducto} from "../../cantidad-producto";
 import {Producto} from "../../producto/producto";
 
 export class PedidoProductor {
+  id: number;
   costoTotal: number;
   ofertaProductor: Oferta;
-  producto:Producto;
+  producto: Producto;
   cantidadesProducto: CantidadProducto[];
 }

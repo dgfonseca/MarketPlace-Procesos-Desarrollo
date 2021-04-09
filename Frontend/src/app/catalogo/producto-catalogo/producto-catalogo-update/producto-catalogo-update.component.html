@@ -1,7 +1,7 @@
 <div class="column">
   <h3 class="title">Modificación de producto del catalogo</h3>
   <div class="box">
-    <form>
+    <form id="form">
       <div class="field">
         <div class="control">
           <input
@@ -30,16 +30,6 @@
         <div class="control column">
           <input
             class="input is-medium"
-            type="number"
-            name="cantidad"
-            min="0"
-            placeholder="Cantidad"
-            required
-          />
-        </div>
-        <div class="control column">
-          <input
-            class="input is-medium"
             type="text"
             name="unidad"
             placeholder="Unidad"
@@ -62,12 +52,12 @@
         <div class="column">
           <button
             class="button is-danger is-medium is-fullwidth"
-            href=""
+            id="cancelar"
           >Cancelar</button
           >
         </div>
         <div class="column">
-          <button class="button is-info is-medium is-fullwidth">
+          <button class="button is-info is-medium is-fullwidth"  id="modificar">
             Modificar producto
           </button>
         </div>

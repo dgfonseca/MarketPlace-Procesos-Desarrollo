@@ -9,15 +9,16 @@
         </span>
       </div>
     </div>
-    <div class="columns is-vcentered">
+    <div class="columns is-vcentered" *ngFor="let productoCatalogo of productosCatalogo">
       <div class="column is-9 has-text-left is-size-3">
         <a
           href=""
-        >Nombre</a
+        >{{productoCatalogo.nombre}}</a
         >
       </div>
       <div class="column is-3">
         <button
+          (click)="anadir(productoCatalogo)"
           class="button is-info is-medium is-fullwidth"
         >Añadir
         </button

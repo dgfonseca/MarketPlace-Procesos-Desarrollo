@@ -10,11 +10,12 @@ import {CatalogoModule} from "./catalogo/catalogo.module";
 import {UsuarioModule} from "./usuario/usuario.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HomeComponent} from "./home/home.component";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +25,9 @@ import {HomeComponent} from "./home/home.component";
     CatalogoModule,
     LayoutModule,
     UsuarioModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

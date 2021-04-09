@@ -9,36 +9,50 @@
         </span>
       </div>
     </div>
-    <div class="columns is-vcentered p-5">
-      <div class="column is-half box is-bordered">
-        <div class="has-text-centered is-size-3 columns">
-          <div class="column">
-            <a
-              href=""
-            >Nombre</a
-            >
+    <div *ngFor="let productoCatalogo of productosCatalogo">
+      <div class="columns is-vcentered p-5">
+        <div class="column is-half box is-bordered">
+          <div class="has-text-centered is-size-3 columns">
+            <div class="column">
+              <a
+                href="/catalogo/producto-catalogo/{{productoCatalogo.id}}"
+              >{{productoCatalogo.nombre}}</a
+              >
+            </div>
           </div>
-        </div>
-        <div class="columns m-0">
+          <div class="columns m-0">
+            <div class="column">
+              <a
+                class="button is-info is-medium is-fullwidth"
+                href="/catalogo/producto-catalogo/update/{{productoCatalogo.id}}"
+              >Editar</a
+              >
+            </div>
+            <div class="column" *ngIf="productoCatalogo.activado == true">
+              <button
+                class="button is-info is-medium is-fullwidth"
+                (click)="cambiarActivado(productoCatalogo.id, productoCatalogo.activado)"
+              >Deshabilitar
+              </button
+              >
+            </div>
+            <div class="column" *ngIf="productoCatalogo.activado == false">
+              <button
+                class="button is-info is-medium is-fullwidth"
+                (click)="cambiarActivado(productoCatalogo.id, productoCatalogo.activado)"
+              >Habilitar
+              </button
+              >
+            </div>
+          </div>
           <div class="column">
             <button
-              class="button is-info is-medium is-fullwidth"
-            >Editar</button
+              class="button is-danger is-medium is-fullwidth"
+              (click)="eliminar(productoCatalogo.id)"
+            >Eliminar
+            </button
             >
           </div>
-          <div class="column">
-            <button
-              class="button is-info is-medium is-fullwidth"
-            >Habilitar</button
-            >
-          </div>
-        </div>
-        <div class="column">
-          <button
-            class="button is-danger is-medium is-fullwidth"
-            href=""
-          >Eliminar</button
-          >
         </div>
       </div>
     </div>
