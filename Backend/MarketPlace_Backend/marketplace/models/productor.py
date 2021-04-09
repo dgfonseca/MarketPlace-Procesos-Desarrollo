@@ -1,12 +1,13 @@
 from django.db import models
+from .user import User
 
 
 class Productor(models.Model):
-    nombre = models.CharField(max_length=150, null=False, blank=False)
     direccion = models.CharField(max_length=200, null=False, blank=False)
-    telefono = models.CharField(max_length=20, null=False, blank=False)
-    activado = models.BooleanField(default=False, blank=False, null=False)
-    foto = models.ImageField(upload_to='static', null=True, blank=True)
+    fotoProveedor = models.CharField(max_length=500, blank=False, null=False)
+    numeroTelefono = models.CharField(max_length=20, null=False, blank=False)
+    descripcion = models.CharField(max_length=200, null=False, blank=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 
