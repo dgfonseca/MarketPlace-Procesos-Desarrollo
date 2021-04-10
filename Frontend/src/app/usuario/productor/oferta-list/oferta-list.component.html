@@ -9,32 +9,18 @@
         </span>
       </div>
     </div>
-    <div class="columns is-vcentered">
-      <div class="column is-6 has-text-left is-size-3">
+    <div class="columns is-vcentered" *ngFor="let oferta of ofertas">
+      <div class="column has-text-left is-size-4">
         <a
           href=""
-        >Producto</a
+        >Fecha inicio: {{oferta.fechaInicio}}</a
         >
       </div>
-      <div class="column is-2">
-        <p
-          class="is-size-4 has-text-right"
-          href=""
-        >Cantidad</p
-        >
-      </div>
-      <div class="column is-2 has-text-left">
+      <div class="column">
         <p
           class="is-size-4"
           href=""
-        >Unidad</p
-        >
-      </div>
-      <div class="column is-2">
-        <p
-          class="is-size-4"
-          href=""
-        >$Precio</p
+        >Fecha fin: {{oferta.fechaFin}}</p
         >
       </div>
     </div>

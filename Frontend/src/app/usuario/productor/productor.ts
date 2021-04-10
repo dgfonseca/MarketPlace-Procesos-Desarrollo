@@ -4,7 +4,7 @@ import {Oferta} from "../../catalogo/oferta/oferta";
 export class Productor extends Usuario {
   id: number;
   direccion: string;
-  fotoProveedot: string;
+  fotoProveedor: string;
   activado: boolean;
   numeroTelefono: string;
   descripcion: string;

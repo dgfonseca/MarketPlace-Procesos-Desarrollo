@@ -4,7 +4,7 @@ from django.db import models
 class Usuario(models.Model):
     nombre = models.CharField(max_length=255, blank=False, null=False)
     correo = models.EmailField(max_length=255, blank=False, unique=True)
-    contrasena = models.EmailField(max_length=255, blank=False, unique=True)
+    contrasena = models.CharField(max_length=255, blank=False, unique=True)
     esAdmin = models.BooleanField(default=False)
 
 

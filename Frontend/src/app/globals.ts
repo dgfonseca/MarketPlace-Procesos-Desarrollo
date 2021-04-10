@@ -17,26 +17,29 @@ export const OFERTA = "oferta/";
 export const PEDIDO_PRODUCTOR = "pedido-productor/";
 export const PRODUCTOR = "productor/";
 
-export var ofertaAPostular = new Oferta();
+
 export function anadirAOferta(productoCatalogo: ProductoCatalogo) {
+  let ofertaAPostular = <Oferta>JSON.parse(<string>localStorage.getItem('ofertaAPostular'));
   if(ofertaAPostular.cantidadesProducto == null){
     ofertaAPostular.cantidadesProducto = [];
   }
   let producto = new Producto();
   producto.productoCatalogo = productoCatalogo;
-  let indice = encontrarEnOfertaAPostular(productoCatalogo)
+  let indice = encontrarEnOfertaAPostular(productoCatalogo, ofertaAPostular)
   if(indice === -1){
     let cantidadProducto = new CantidadProducto();
     cantidadProducto.cantidad = 1;
     cantidadProducto.producto = producto;
+    cantidadProducto.producto.precioPorUnidad = 0;
     ofertaAPostular.cantidadesProducto.push(cantidadProducto);
   }
   else {
     ofertaAPostular.cantidadesProducto[indice].cantidad++;
   }
+  localStorage.setItem('ofertaAPostular', JSON.stringify(ofertaAPostular));
 }
 
-function encontrarEnOfertaAPostular(productoCatalogo: ProductoCatalogo) : number{
+export function encontrarEnOfertaAPostular(productoCatalogo: ProductoCatalogo, ofertaAPostular: any) : number{
   let size = ofertaAPostular.cantidadesProducto.length;
   for(let i = 0;i<size; i++){
     if(ofertaAPostular.cantidadesProducto[i].producto.productoCatalogo.id === productoCatalogo.id){
@@ -46,12 +49,13 @@ function encontrarEnOfertaAPostular(productoCatalogo: ProductoCatalogo) : number
   return -1;
 }
 
-export var canastaAPostular = new Canasta();
 export function anadirACanasta(productoCatalogo: ProductoCatalogo) {
+  let canastaAPostular = <Canasta>JSON.parse(<string>localStorage.getItem('canastaAPostular'));
+
   if(canastaAPostular.cantidades == null){
     canastaAPostular.cantidades = [];
   }
-  let indice = encontrarEnCanastaAPostular(productoCatalogo)
+  let indice = encontrarEnCanastaAPostular(productoCatalogo, canastaAPostular)
   if(indice === -1){
     let cantidadProductoCatalogo = new CantidadProductoCatalogo();
     cantidadProductoCatalogo.cantidad = 1;
@@ -61,9 +65,10 @@ export function anadirACanasta(productoCatalogo: ProductoCatalogo) {
   else {
     canastaAPostular.cantidades[indice].cantidad++;
   }
+  localStorage.setItem('canastaAPostular', JSON.stringify(canastaAPostular));
 }
 
-export function encontrarEnCanastaAPostular(productoCatalogo: ProductoCatalogo) : number{
+export function encontrarEnCanastaAPostular(productoCatalogo: ProductoCatalogo, canastaAPostular: any) : number{
   let size = canastaAPostular.cantidades.length;
   for(let i = 0;i<size; i++){
     if(canastaAPostular.cantidades[i].productoCatalogo.id === productoCatalogo.id){

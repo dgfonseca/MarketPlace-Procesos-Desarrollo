@@ -9,23 +9,54 @@
         </span>
       </div>
     </div>
-    <div class="columns is-vcentered">
-      <div class="column is-6 has-text-left is-size-3">
+    <div class="columns is-vcentered" *ngFor="let cantidad of oferta.cantidadesProducto">
+      <div class="column is-5 has-text-left is-size-3">
         <a
           href=""
-        >Nombre</a
+        >{{cantidad.producto.productoCatalogo.nombre}}</a
         >
       </div>
-      <div class="column is-3">
-        <button
-          class="button is-info is-medium is-fullwidth"
-        >Editar</button
-        >
+      <div class="column is-1 ">
+        <div class="field mb-0">
+          <div class="control">
+            <input
+              class="input is-medium has-text-right cantidad"
+              type="number"
+              name="cantidad"
+              value="{{cantidad.cantidad}}"
+              required
+              (change)="cambio(cantidad.producto.productoCatalogo, $event)"
+            />
+          </div>
+        </div>
       </div>
+      <div class="column is-1 has-text-left is-vcentered">
+        {{cantidad.producto.productoCatalogo.unidad}}
+      </div>
+      <div class="column is-1 has-text-right">
+        $
+      </div>
+      <div class="column is-1 ">
+        <div class="field mb-0">
+          <div class="control">
+            <input
+              class="input is-medium has-text-left"
+              type="number"
+              name="precio"
+              value="{{cantidad.producto.precioPorUnidad}}"
+              required
+              (change)="cambioPrecio(cantidad.producto.productoCatalogo, $event)"
+            />
+          </div>
+        </div>
+      </div>
+
       <div class="column is-3">
         <button
           class="button is-danger is-medium is-fullwidth"
-        >Eliminar</button
+          (click)="eliminar(cantidad.producto.productoCatalogo)"
+        >Eliminar
+        </button
         >
       </div>
     </div>
@@ -34,14 +65,16 @@
         <button
           class="button is-danger is-medium is-fullwidth"
           href=""
-        >Cancelar</button
+        >Cancelar
+        </button
         >
       </div>
       <div class="column">
         <button
           class="button is-info is-medium is-fullwidth"
-          href=""
-        >Crear oferta</button
+          (click)="crear()"
+        >Crear oferta
+        </button
         >
       </div>
 

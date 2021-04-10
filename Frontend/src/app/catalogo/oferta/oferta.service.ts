@@ -31,4 +31,8 @@ export class OfertaService {
   deleteOferta(id: number) {
     return this.http.delete<Oferta>(globals.API_IP + globals.OFERTA + id)
   }
+
+  getOfertasProductor(id: number): Observable<Oferta[]> {
+    return this.http.get<Oferta[]>(globals.API_IP + "productorOfertas/"+id)
+  }
 }

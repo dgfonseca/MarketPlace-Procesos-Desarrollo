@@ -6,6 +6,7 @@ import {ProductoCatalogoService} from "../../producto-catalogo/producto-catalogo
 import {ProductoCatalogo} from "../../producto-catalogo/producto-catalogo";
 import {Canasta} from "../canasta";
 import * as globals from "../../../globals";
+import {Oferta} from "../../oferta/oferta";
 
 @Component({
   selector: 'app-canasta-create',
@@ -29,15 +30,15 @@ export class CanastaCreateComponent implements OnInit {
 
   agregar(productoCatalogo: ProductoCatalogo) {
     globals.anadirACanasta(productoCatalogo);
-    this.canastaAPostular = globals.canastaAPostular;
+    this.canastaAPostular = <Canasta>JSON.parse(<string>localStorage.getItem('canastaAPostular'));
   }
 
   eliminar(productoCatalogo: ProductoCatalogo) {
-    let index = globals.encontrarEnCanastaAPostular(productoCatalogo)
+    let index = globals.encontrarEnCanastaAPostular(productoCatalogo, <Canasta>JSON.parse(<string>localStorage.getItem('canastaAPostular')))
     if (index != -1) {
       this.canastaAPostular.cantidades.splice(index, 1)
     }
-    this.canastaAPostular = globals.canastaAPostular;
+    localStorage.setItem('canastaAPostular', JSON.stringify(this.canastaAPostular))
   }
 
   crear() {
@@ -48,24 +49,22 @@ export class CanastaCreateComponent implements OnInit {
         let size = this.canastaAPostular.cantidades.length;
         for (let i = 0; i < size; i++) {
           this.canastaAPostular.cantidades[i].canasta = temp.id;
-          // @ts-ignore
           this.canastaAPostular.cantidades[i].productoCatalogo = this.canastaAPostular.cantidades[i].productoCatalogo.id;
           this.catalogoService.createCantidadProductoCatalogo(this.canastaAPostular.cantidades[i]).subscribe();
-          // @ts-ignore
-          delete this.canastaAPostular.cantidades[i].productoCatalogo;
-          console.log(this.canastaAPostular.cantidades[i]);
 
         }
       }
     );
     this.productosCatalogo = [];
-    // @ts-ignore
-    globals.canastaAPostular = new Canasta();
+    localStorage.removeItem('canastaAPostular');
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('canastaAPostular') == null) {
+      localStorage.setItem('canastaAPostular', JSON.stringify(new Oferta()));
+    }
     this.productoCatalogoService.getProductosCatalogo().subscribe(productosCatalogo => this.productosCatalogo = productosCatalogo)
-    this.canastaAPostular = globals.canastaAPostular;
+    this.canastaAPostular = <Canasta>JSON.parse(<string>localStorage.getItem('canastaAPostular'))
   }
 
 }
