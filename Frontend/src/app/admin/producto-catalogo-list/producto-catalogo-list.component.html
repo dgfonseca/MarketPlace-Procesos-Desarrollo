@@ -31,7 +31,7 @@
             <div class="column" *ngIf="productoCatalogo.activado == true">
               <button
                 class="button is-info is-medium is-fullwidth"
-                (click)="cambiarActivado(productoCatalogo.id, productoCatalogo.activado)"
+                (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
               >Deshabilitar
               </button
               >
@@ -39,7 +39,7 @@
             <div class="column" *ngIf="productoCatalogo.activado == false">
               <button
                 class="button is-info is-medium is-fullwidth"
-                (click)="cambiarActivado(productoCatalogo.id, productoCatalogo.activado)"
+                (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
               >Habilitar
               </button
               >

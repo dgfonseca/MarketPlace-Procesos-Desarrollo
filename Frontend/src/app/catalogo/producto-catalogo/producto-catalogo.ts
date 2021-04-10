@@ -8,6 +8,6 @@ export class ProductoCatalogo {
   fotoProducto: string;
   unidad: string;
   activado: boolean;
-  cantidadProductoCatalogo: CantidadProductoCatalogo;
+  cantidadProductoCatalogo: any;
   productos: Producto[];
 }

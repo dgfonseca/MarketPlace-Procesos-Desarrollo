@@ -7,7 +7,7 @@ export class PedidoCliente {
   costoTotal: number;
   fechaEntrega: Date;
   direccionEntrega: string;
-  usuario: Usuario;
+  usuario: any;
   cantidadesProductoCatalogo: CantidadProductoCatalogo[];
   pedidosProductor: PedidoProductor[];
 }

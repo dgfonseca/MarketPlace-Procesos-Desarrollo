@@ -6,7 +6,7 @@ export class Oferta {
   id: number;
   fechaInicio: Date;
   fechaFin: Date;
-  productor: Productor;
+  productor: any;
   cantidadesProducto: CantidadProducto[];
   pedidosProductores: PedidoProductor[];
 }

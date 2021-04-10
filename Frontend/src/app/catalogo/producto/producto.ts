@@ -5,6 +5,6 @@ export class Producto {
   id: number;
   precioPorUnidad: number;
   cantidadDisponible: number;
-  cantidadProducto: CantidadProducto;
-  productoCatalogo: ProductoCatalogo;
+  cantidadProducto: any;
+  productoCatalogo: any;
 }

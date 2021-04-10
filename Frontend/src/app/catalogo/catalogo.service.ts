@@ -34,7 +34,7 @@ export class CatalogoService {
   }
 
   getCantidadProductoCatalogo(id: number): Observable<CantidadProductoCatalogo> {
-    return this.http.get<CantidadProductoCatalogo>(globals.API_IP + globals.CANTIDAD_PRODUCTO_CATALOGO + id)
+    return this.http.get<CantidadProductoCatalogo>(globals.API_IP + globals.CANTIDAD_PRODUCTO_CATALOGO + id + "/")
   }
 
   getCantidadesProductoCatalogo(): Observable<CantidadProductoCatalogo[]> {
@@ -46,10 +46,10 @@ export class CatalogoService {
   }
 
   updateCantidadProductoCatalogo(id: number, cantidadProductoCatalogo: CantidadProductoCatalogo) {
-    return this.http.put<CantidadProductoCatalogo>(globals.API_IP + globals.CANTIDAD_PRODUCTO_CATALOGO + id, cantidadProductoCatalogo)
+    return this.http.put<CantidadProductoCatalogo>(globals.API_IP + globals.CANTIDAD_PRODUCTO_CATALOGO + id + "/", cantidadProductoCatalogo)
   }
 
   deleteCantidadProductoCatalogo(id: number) {
-    return this.http.delete<CantidadProductoCatalogo>(globals.API_IP + globals.CANTIDAD_PRODUCTO_CATALOGO + id)
+    return this.http.delete<CantidadProductoCatalogo>(globals.API_IP + globals.CANTIDAD_PRODUCTO_CATALOGO + id + "/")
   }
 }

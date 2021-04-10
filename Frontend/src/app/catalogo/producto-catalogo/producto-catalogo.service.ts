@@ -21,15 +21,15 @@ export class ProductoCatalogoService {
   }
 
   createProductoCatalogo(productoCatalogo: ProductoCatalogo) {
-    return this.http.post<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO, productoCatalogo).subscribe()
+    return this.http.post<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO, productoCatalogo)
   }
 
   updateProductoCatalogo(id: number, productoCatalogo: ProductoCatalogo) {
-    return this.http.put<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/", productoCatalogo).subscribe()
+    return this.http.put<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/", productoCatalogo)
   }
 
   deleteProductoCatalogo(id: number) {
-    return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/").subscribe()
+    return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/")
   }
 
 }

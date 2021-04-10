@@ -63,7 +63,7 @@ export function anadirACanasta(productoCatalogo: ProductoCatalogo) {
   }
 }
 
-function encontrarEnCanastaAPostular(productoCatalogo: ProductoCatalogo) : number{
+export function encontrarEnCanastaAPostular(productoCatalogo: ProductoCatalogo) : number{
   let size = canastaAPostular.cantidades.length;
   for(let i = 0;i<size; i++){
     if(canastaAPostular.cantidades[i].productoCatalogo.id === productoCatalogo.id){

@@ -19,15 +19,13 @@ export class ProductoCatalogoListComponent implements OnInit {
   }
 
   eliminar(id:number) {
-    this.productoCatalogoService.deleteProductoCatalogo(id);
+    this.productoCatalogoService.deleteProductoCatalogo(id).subscribe();
     window.location.reload();
   }
 
-  cambiarActivado(id:number, estado:boolean) {
-    const productoCatalogo =  new ProductoCatalogo();
+  cambiarActivado(id:number, productoCatalogo:ProductoCatalogo, estado:boolean) {
     productoCatalogo.activado = !estado;
     this.productoCatalogoService.updateProductoCatalogo(id, productoCatalogo);
-    window.location.reload();
   }
 
   ngOnInit(): void {

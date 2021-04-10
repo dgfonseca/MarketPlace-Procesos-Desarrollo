@@ -28,7 +28,7 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
     this.productoCatalogo.fotoProducto = (<HTMLInputElement>document.getElementsByName("fotoProducto")[0]).value;
     this.productoCatalogo.unidad = (<HTMLInputElement>document.getElementsByName("unidad")[0]).value;
     this.productoCatalogo.precioPorUnidad = parseFloat((<HTMLInputElement>document.getElementsByName("precio")[0]).value);
-    this.productoCatalogoService.updateProductoCatalogo(this.productoCatalogo.id, this.productoCatalogo)
+    this.productoCatalogoService.updateProductoCatalogo(this.productoCatalogo.id, this.productoCatalogo).subscribe();
     window.location.reload();
   }
 

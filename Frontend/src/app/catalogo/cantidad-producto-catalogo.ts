@@ -5,7 +5,7 @@ import {PedidoCliente} from "./pedido/pedido-cliente/pedido-cliente";
 export class CantidadProductoCatalogo {
   id: number;
   cantidad: number;
-  productoCatalogo: ProductoCatalogo;
-  canasta: Canasta;
-  pedidoUsuario: PedidoCliente;
+  productoCatalogo: any;
+  canasta: any;
+  pedidoUsuario: any;
 }

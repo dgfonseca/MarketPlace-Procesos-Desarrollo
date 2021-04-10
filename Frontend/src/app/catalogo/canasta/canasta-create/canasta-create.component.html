@@ -1,7 +1,7 @@
 <div class="column">
   <h3 class="title">Registro de canasta</h3>
   <div class="box">
-    <form>
+    <form onsubmit="return false">
       <div class="field">
         <div class="control">
           <input
@@ -18,52 +18,78 @@
         <div class="column">
           <button
             class="button is-danger is-medium is-fullwidth"
-            href=""
-          >Cancelar</button
+            href="/admin/home"
+          >Cancelar
+          </button
           >
         </div>
         <div class="column">
-          <button class="button is-info is-medium is-fullwidth">
+          <button class="button is-info is-medium is-fullwidth"
+          (click)="crear()">
             Crear canasta
           </button>
         </div>
       </div>
     </form>
-    <div class="column px-0 py-5">
-      <div class="columns">
-        <div class="field column is-9">
-          <div class="control has-icons-right">
-            <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto">
-            <span class="icon is-small is-right">
-          <fa-icon [icon]="faSearch"></fa-icon>
-        </span>
+    <div class="columns">
+      <div class="column">
+        <div class="column px-0 py-5">
+          <div class="columns">
+            <div class="field column">
+              <div class="control has-icons-right">
+                <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto">
+                <span class="icon is-small is-right">
+                  <fa-icon [icon]="faSearch"></fa-icon>
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="column is-3">
-          <button
-            class="button is-info is-medium is-fullwidth"
-          >Añadir
-          </button
-          >
+          <div *ngFor="let productoCatalogo of productosCatalogo">
+            <div class="has-text-left is-size-3 columns">
+              <div class="column is-9">
+                <a
+                  href=""
+                >{{productoCatalogo.nombre}}</a
+                >
+              </div>
+              <div class="column is-3">
+                <button
+                  class="button is-info is-medium is-fullwidth"
+                  (click)="agregar(productoCatalogo)"
+                >añadir
+                </button
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="has-text-left is-size-3 columns">
-          <div class="column is-9">
-            <a
-              href=""
-            >Nombre</a
-            >
-          </div>
-          <div class="column is-3">
-            <button
-              class="button is-danger is-medium is-fullwidth"
-            >Eliminar
-            </button
-            >
+      <div class="column">
+        <div *ngFor="let cantidad of canastaAPostular.cantidades">
+          <div class="has-text-left is-size-3 columns">
+            <div class="column is-6">
+              <a
+                href=""
+              >{{cantidad.productoCatalogo.nombre}}</a
+              >
+            </div>
+            <div class="column is-3">
+              <p
+              >{{cantidad.cantidad}} {{cantidad.productoCatalogo.unidad}}</p
+              >
+            </div>
+            <div class="column is-3">
+              <button
+                class="button is-danger is-medium is-fullwidth"
+                (click)="eliminar(cantidad.productoCatalogo)"
+              >eliminar
+              </button
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>

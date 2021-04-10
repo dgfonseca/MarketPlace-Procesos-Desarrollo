@@ -13,7 +13,7 @@ export class CanastaService {
   }
 
   getCanasta(id: number): Observable<Canasta> {
-    return this.http.get<Canasta>(globals.API_IP + globals.CANASTA + id)
+    return this.http.get<Canasta>(globals.API_IP + globals.CANASTA + id + "/")
   }
 
   getCanastas(): Observable<Canasta[]> {
@@ -25,10 +25,10 @@ export class CanastaService {
   }
 
   updateCanasta(id: number, canasta: Canasta) {
-    return this.http.put<Canasta>(globals.API_IP + globals.CANASTA + id, canasta)
+    return this.http.put<Canasta>(globals.API_IP + globals.CANASTA + id + "/", canasta)
   }
 
   deleteCanasta(id: number) {
-    return this.http.delete<Canasta>(globals.API_IP + globals.CANASTA + id)
+    return this.http.delete<Canasta>(globals.API_IP + globals.CANASTA + id + "/")
   }
 }
