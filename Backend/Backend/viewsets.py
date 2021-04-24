@@ -1,7 +1,47 @@
 from rest_framework import viewsets, generics
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import ProductoCatalogo
+from .serializers import ProductoCatalogoSerializer
+from django.views.decorators.csrf import csrf_exempt
 
 from . import models
 from . import serializers
+
+
+@csrf_exempt
+@api_view(['POST'])
+def post_producto_catalogo(request):
+    try:
+        ProductoCatalogo.objects.filter(nombre=str(request.data["nombre"]))
+        return Response({"message":"Producto con ese nombre ya existe"}, status=status.HTTP_409_CONFLICT)
+    except ProductoCatalogo.DoesNotExist or ProductoCatalogo.MultipleObjectsReturned:
+        if request.method == 'POST':
+            serializer = ProductoCatalogoSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+        return Response({"message":"Tiene que se un metodo POST"},status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+@api_view(['PUT'])
+def put_producto_catalogo(request, id):
+    try:
+        ProductoCatalogo.objects.filter(nombre=request.data["nombre"])
+        return Response({"message":"Producto con ese nombre ya existe"}, status=status.HTTP_409_CONFLICT)
+    except ProductoCatalogo.DoesNotExist or ProductoCatalogo.MultipleObjectsReturned:
+
+        if request.method == 'PUT':
+            producto = ProductoCatalogo.objects.get(pk=id)
+            serializer = ProductoCatalogoSerializer(producto, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+        return Response({"message":"Tiene que se un metodo POST"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UsuarioViewset(viewsets.ModelViewSet):

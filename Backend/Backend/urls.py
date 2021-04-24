@@ -20,5 +20,7 @@ from . import router
 
 urlpatterns = [
     path('api/', include(router.router.urls)),
-    path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset")
+    path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset"),
+    path('api/putProducto/<int:id>', viewsets.put_producto_catalogo, name="PutProductoCatalogo"),
+    path('api/postProductoCatalogo', viewsets.post_producto_catalogo, name="PostProductoCatalogo")
 ]
