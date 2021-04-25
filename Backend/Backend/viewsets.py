@@ -1,4 +1,4 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, response, status
 
 from . import models
 from . import serializers
@@ -22,6 +22,18 @@ class PedidoUsuarioViewset(viewsets.ModelViewSet):
 class ProductoCatalogoViewset(viewsets.ModelViewSet):
     queryset = models.ProductoCatalogo.objects.all()
     serializer_class = serializers.ProductoCatalogoSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        productos = models.Producto.objects.filter(productoCatalogo=kwargs["pk"]).first()
+        producto_id = getattr(productos, "id")
+        print(producto_id)
+        cantidades = models.CantidadProducto.objects.filter(producto=producto_id)
+        for i in cantidades:
+            if getattr(i, "ofertaProductor") is not null:
+                return response.Response(status = status.HTTP_406_NOT_ACCEPTABLE)
+        self.perform_destroy(instance)
+        return response.Response(status = status.HTTP_204_NO_CONTENT)
 
 
 class CanastaViewset(viewsets.ModelViewSet):
