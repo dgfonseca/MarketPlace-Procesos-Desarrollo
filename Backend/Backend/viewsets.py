@@ -27,7 +27,6 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
         instance = self.get_object()
         productos = models.Producto.objects.filter(productoCatalogo=kwargs["pk"]).first()
         producto_id = getattr(productos, "id")
-        print(producto_id)
         cantidades = models.CantidadProducto.objects.filter(producto=producto_id)
         for i in cantidades:
             if getattr(i, "ofertaProductor") is not null:
