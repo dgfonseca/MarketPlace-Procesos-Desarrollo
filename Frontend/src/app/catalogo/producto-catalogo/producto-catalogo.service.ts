@@ -29,7 +29,7 @@ export class ProductoCatalogoService {
   }
 
   deleteProductoCatalogo(id: number) {
-    return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/")
+    return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/", {observe: 'response'})
   }
 
 }
