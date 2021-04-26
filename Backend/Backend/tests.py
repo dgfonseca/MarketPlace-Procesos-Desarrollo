@@ -168,17 +168,17 @@ class GM_09_Tests(TestCase):
             {
                 "precioPorUnidad": "Error",
                 "fotoProducto": 123321,
-                "activado":True,
-                "unidad":"Kilos"
+                "activado": True,
+                "unidad": "Kilos"
             }
         ), content_type="application/json")
-        producto = ProductoCatalogo.objects.get(pk=producto.id)
+        producto2 = ProductoCatalogo.objects.get(pk=producto.id)
         http_response = response.status_code
-        self.assertEqual(producto.activado, False)
-        self.assertEqual(producto.unidad, "Libras")
-        self.assertEqual(producto.precioPorUnidad, 2000)
-        self.assertEqual(producto.fotoProducto, "Foto2")
-        self.assertEqual(http_response, 203)
+        self.assertEqual(producto2.activado, False)
+        self.assertEqual(producto2.unidad, "Libras")
+        self.assertEqual(producto2.precioPorUnidad, 2000)
+        self.assertEqual(producto2.fotoProducto, "Foto2")
+        self.assertEqual(http_response, 406)
 
 
 

@@ -26,7 +26,7 @@ class PedidoUsuario(models.Model):
 
 class ProductoCatalogo(models.Model):
     nombre = models.CharField(max_length=255, blank=False, null=False)
-    precioPorUnidad = models.FloatField(blank=False, null=False)
+    precioPorUnidad = models.FloatField(blank=False, null=False, )
     fotoProducto = models.CharField(max_length=255, blank=False, null=False)
     unidad = models.CharField(max_length=255, blank=False, null=False)
     activado = models.BooleanField(default=False)
