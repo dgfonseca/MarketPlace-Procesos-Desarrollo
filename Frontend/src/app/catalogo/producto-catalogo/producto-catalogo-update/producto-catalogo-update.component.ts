@@ -24,22 +24,22 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
   }
 
   modificar() {
-    if(confirm("Está seguro que quiere eliminar el producto del catalogo?")){
+    if (confirm("Está seguro que quiere eliminar el producto del catalogo?")) {
       this.productoCatalogo.nombre = (<HTMLInputElement>document.getElementsByName("nombre")[0]).value;
       this.productoCatalogo.fotoProducto = (<HTMLInputElement>document.getElementsByName("fotoProducto")[0]).value;
       this.productoCatalogo.unidad = (<HTMLInputElement>document.getElementsByName("unidad")[0]).value;
       this.productoCatalogo.precioPorUnidad = parseFloat((<HTMLInputElement>document.getElementsByName("precio")[0]).value);
-      this.productoCatalogoService.updateProductoCatalogo(this.productoCatalogo.id, this.productoCatalogo).subscribe(resp => {
-        if(resp.status===200){
-          alert("El producto del catálogo fue actualizado exitosamente");
-          window.location.href="/admin/producto-catalogo/list";
-        }
-        else{
-          alert("El producto del catálogo no pudo ser actualizado");
-        }
-      });
+      if (this.productoCatalogo.nombre && this.productoCatalogo.fotoProducto && this.productoCatalogo.unidad && this.productoCatalogo.precioPorUnidad) {
+        this.productoCatalogoService.updateProductoCatalogo(this.productoCatalogo.id, this.productoCatalogo).subscribe(resp => {
+          if (resp.status === 200) {
+            alert("El producto del catálogo fue actualizado exitosamente");
+            window.location.href = "/admin/producto-catalogo/list";
+          } else {
+            alert("El producto del catálogo no pudo ser actualizado");
+          }
+        });
+      }
     }
-
   }
 
   ngOnInit(): void {
