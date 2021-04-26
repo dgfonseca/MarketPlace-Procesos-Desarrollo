@@ -134,6 +134,50 @@ class GM_09_Tests(TestCase):
         self.assertEqual(current_data['message'], 'Producto con ese nombre ya existe')
         self.assertEqual(http_response, 409)
 
+    def test_put_precio_producto_catalogo(self):
+        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
+            {
+                "precioPorUnidad": -2000,
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data["message"], "El precio no puede ser menor o igual a 0")
+        self.assertEqual(http_response, 406)
+
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
+            {
+                "precioPorUnidad": 3000,
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data["nombre"], "Producto 1")
+        self.assertEqual(http_response, 200)
+
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
+            {
+                "precioPorUnidad": 0,
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data["message"], "El precio no puede ser menor o igual a 0")
+        self.assertEqual(http_response, 406)
+
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
+            {
+                "precioPorUnidad": "Inyección soy hacker",
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data["message"], "El precio debe ser un numero")
+        self.assertEqual(http_response, 406)
+
+
+
     def test_put_producto_catalogo_campos_faltantes_incorrectos(self):
         producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
 
@@ -179,6 +223,9 @@ class GM_09_Tests(TestCase):
         self.assertEqual(producto2.precioPorUnidad, 2000)
         self.assertEqual(producto2.fotoProducto, "Foto2")
         self.assertEqual(http_response, 406)
+
+
+
 
 
 
