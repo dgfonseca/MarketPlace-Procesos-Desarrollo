@@ -5,43 +5,11 @@ from rest_framework.response import Response
 from .models import ProductoCatalogo
 from .serializers import ProductoCatalogoSerializer
 from django.views.decorators.csrf import csrf_exempt
+from django.core.serializers import serialize
+
 
 from . import models
 from . import serializers
-
-
-@csrf_exempt
-@api_view(['POST'])
-def post_producto_catalogo(request):
-    try:
-        ProductoCatalogo.objects.filter(nombre=str(request.data["nombre"]))
-        return Response({"message":"Producto con ese nombre ya existe"}, status=status.HTTP_409_CONFLICT)
-    except ProductoCatalogo.DoesNotExist or ProductoCatalogo.MultipleObjectsReturned:
-        if request.method == 'POST':
-            serializer = ProductoCatalogoSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
-        return Response({"message":"Tiene que se un metodo POST"},status=status.HTTP_400_BAD_REQUEST)
-
-
-@csrf_exempt
-@api_view(['PUT'])
-def put_producto_catalogo(request, id):
-    try:
-        ProductoCatalogo.objects.filter(nombre=request.data["nombre"])
-        return Response({"message":"Producto con ese nombre ya existe"}, status=status.HTTP_409_CONFLICT)
-    except ProductoCatalogo.DoesNotExist or ProductoCatalogo.MultipleObjectsReturned:
-
-        if request.method == 'PUT':
-            producto = ProductoCatalogo.objects.get(pk=id)
-            serializer = ProductoCatalogoSerializer(producto, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
-        return Response({"message":"Tiene que se un metodo POST"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UsuarioViewset(viewsets.ModelViewSet):
@@ -62,6 +30,56 @@ class PedidoUsuarioViewset(viewsets.ModelViewSet):
 class ProductoCatalogoViewset(viewsets.ModelViewSet):
     queryset = models.ProductoCatalogo.objects.all()
     serializer_class = serializers.ProductoCatalogoSerializer
+
+    @csrf_exempt
+    def create(self, request, *args, **kwargs):
+        try:
+            if 'nombre' in request.data:
+                producto = list(ProductoCatalogo.objects.filter(nombre=str(request.data["nombre"])))
+                if producto or producto != [] or len(producto) != 0:
+                    return Response({"message": "Producto con ese nombre ya existe"}, status=status.HTTP_409_CONFLICT)
+                else:
+                    if request.method == 'POST':
+                        serializer = ProductoCatalogoSerializer(data=request.data)
+                        if serializer.is_valid():
+                            serializer.save()
+                            return Response(serializer.data, status=status.HTTP_201_CREATED)
+                        return Response({"message":"Campos faltantes o incorrectos"}, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+                    return Response({"message": "Tiene que se un metodo POST"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({"message":"Tiene que enviar un nombre"}, status=status.HTTP_409_CONFLICT)
+        except Exception as e:
+                return Response({"message": e}, status=status.HTTP_409_CONFLICT)
+
+    @csrf_exempt
+    def update(self, request, *args, **kwargs):
+        try:
+            if 'nombre' in request.data:
+                producto = list(ProductoCatalogo.objects.filter(nombre=request.data["nombre"]))
+                if producto or producto != [] or len(producto) != 0:
+                    return Response({"message": "Producto con ese nombre ya existe"}, status=status.HTTP_409_CONFLICT)
+                else:
+                    if request.method == 'PUT':
+                        producto = ProductoCatalogo.objects.get(pk=kwargs.get('pk'))
+                        serializer = ProductoCatalogoSerializer(producto, data=request.data, partial=True)
+                        if serializer.is_valid():
+                            serializer.save()
+                            producto = ProductoCatalogo.objects.get(pk=kwargs.get('pk'))
+                            return Response(serializer.data, status=status.HTTP_200_OK)
+                        return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+                    return Response({"message": "Tiene que se un metodo POST"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                if request.method == 'PUT':
+                    producto = ProductoCatalogo.objects.get(pk=kwargs.get('pk'))
+                    serializer = ProductoCatalogoSerializer(producto, data=request.data, partial=True)
+                    if serializer.is_valid():
+                        serializer.save()
+                        producto = ProductoCatalogo.objects.get(pk=kwargs.get('pk'))
+                        return Response(serializer.data, status=status.HTTP_200_OK)
+                    return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+                return Response({"message": "Tiene que se un metodo POST"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"message": e}, status=status.HTTP_409_CONFLICT)
 
 
 class CanastaViewset(viewsets.ModelViewSet):
@@ -103,3 +121,4 @@ class OfertaDeProductorViewset(generics.ListAPIView):
         if id is not None:
             queryset = queryset.filter(productor=id)
         return queryset
+
