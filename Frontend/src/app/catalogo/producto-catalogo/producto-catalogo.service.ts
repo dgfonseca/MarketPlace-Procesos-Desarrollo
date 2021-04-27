@@ -25,7 +25,7 @@ export class ProductoCatalogoService {
   }
 
   updateProductoCatalogo(id: number, productoCatalogo: ProductoCatalogo) {
-    return this.http.put<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/", productoCatalogo)
+    return this.http.put<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/", productoCatalogo , {observe: 'response'})
   }
 
   deleteProductoCatalogo(id: number) {
