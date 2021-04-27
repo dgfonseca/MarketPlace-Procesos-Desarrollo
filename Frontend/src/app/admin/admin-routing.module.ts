@@ -9,6 +9,7 @@ import {ProductorListComponent} from "./productor-list/productor-list.component"
 import {CanastaListComponent} from "./canasta-list/canasta-list.component";
 import {PedidoProductorListComponent} from "./pedido-productor-list/pedido-productor-list.component";
 import {PedidoClienteListComponent} from "./pedido-cliente-list/pedido-cliente-list.component";
+import {EstablecerPrecioComponent} from "./establecer-precio/establecer-precio.component";
 
 const routes: Routes = [
   {
@@ -46,7 +47,11 @@ const routes: Routes = [
   {
     path: 'productor/list',
     component: ProductorListComponent
-  }
+  },
+  {
+    path: 'producto-catalogo/establecer-precio/:id',
+    component: EstablecerPrecioComponent
+  },
 ];
 
 @NgModule({

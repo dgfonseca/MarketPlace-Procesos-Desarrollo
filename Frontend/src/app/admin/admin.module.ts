@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { CanastaListComponent } from './canasta-list/canasta-list.component';
 import { PedidoProductorListComponent } from './pedido-productor-list/pedido-productor-list.component';
 import { PedidoClienteListComponent } from './pedido-cliente-list/pedido-cliente-list.component';
+import { EstablecerPrecioComponent } from './establecer-precio/establecer-precio.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PedidoClienteListComponent } from './pedido-cliente-list/pedido-cliente
     HomeComponent,
     CanastaListComponent,
     PedidoProductorListComponent,
-    PedidoClienteListComponent
+    PedidoClienteListComponent,
+    EstablecerPrecioComponent
   ],
   imports: [
     CommonModule,
