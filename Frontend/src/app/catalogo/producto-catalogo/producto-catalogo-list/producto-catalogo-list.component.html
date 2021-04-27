@@ -1,44 +1,73 @@
 <h1 class="title">Lista de productos</h1>
 <div class="column is-12 is-offset-0">
   <div class="box">
-    <div class="field">
-      <div class="control has-icons-right">
-        <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto">
-        <span class="icon is-small is-right">
-          <fa-icon [icon]="faSearch"></fa-icon>
-        </span>
+    <div class="field columns">
+      <div class="column">
+        <button
+          class="button is-danger is-medium is-fullwidth"
+        >Cancelar edición
+        </button
+        >
+      </div>
+      <div class="column">
+        <a
+          class="button is-info is-medium is-fullwidth"
+          href=""
+        >Generar oferta
+        </a
+        >
       </div>
     </div>
-    <div class="columns is-vcentered" *ngFor="let productoCatalogo of productosCatalogo">
-      <div class="column is-9 has-text-left is-size-3">
+    <div class="columns is-vcentered" *ngFor="let productoCatalogo of productosCatalogo; index as i">
+      <div class="column is-5 has-text-left is-size-3">
         <a
           href=""
         >{{productoCatalogo.nombre}}</a
         >
       </div>
-      <div class="column is-3">
-        <button
-          (click)="anadir(productoCatalogo)"
-          class="button is-info is-medium is-fullwidth"
-        >Añadir
-        </button
-        >
+      <div class="field is-horizontal m-0 is-2">
+        <div class="field-label m-0 p-0 is-vcentered columns is-size-3">
+          <label class="label alinear-derecha has-text-weight-normal">$</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <input
+              class="input is-medium is-right alinear-izquierda"
+              placeholder="{{productoCatalogo.precioPorUnidad}}"
+              type="number"
+              name="precio"
+              min="0"
+              step=".01"
+              (change)="cambio(i)"
+              value="{{productoCatalogo.precioPorUnidad}}"
+            >
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="field columns">
-      <div class="column">
-        <button
-          class="button is-danger is-medium is-fullwidth"
-        >Cancelar
-        </button
-        >
+      <div class="field is-horizontal m-0 is-3">
+        <div class="field-body">
+          <div class="field">
+            <input
+              class="input is-medium is-right alinear-derecha"
+              placeholder="0"
+              type="number"
+              name="cantidad"
+              min="0"
+              (change)="cambio(i)"
+              value="0"
+            >
+          </div>
+        </div>
+        <div class="field-label is-normal m-0 p-0 is-vcentered columns">
+          <label class="label has-text-weight-normal">{{productoCatalogo.unidad}}</label>
+        </div>
       </div>
-      <div class="column">
-        <a
-          class="button is-info is-medium is-fullwidth"
-          href="/catalogo/oferta/create"
-        >Ver seleccionados
-        </a
+      <div class="column is-2 has-text-right">
+        <p
+          class="is-text is-size-3 has-text-right"
+          name="total"
+        >$0
+        </p
         >
       </div>
     </div>

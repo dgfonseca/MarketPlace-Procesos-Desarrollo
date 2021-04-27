@@ -24,6 +24,12 @@ export class ProductoCatalogoListComponent implements OnInit {
     globals.anadirAOferta(productoCatalogo);
   }
 
+  cambio(index: number) {
+    let precio = parseFloat((<HTMLInputElement>document.getElementsByName("precio")[index]).value);
+    let cantidad = parseFloat((<HTMLInputElement>document.getElementsByName("cantidad")[index]).value);
+    (<HTMLElement>document.getElementsByName("total")[index]).textContent = "$" + (precio * cantidad);
+  }
+
   ngOnInit(): void {
     if (localStorage.getItem('ofertaAPostular') == null) {
       localStorage.setItem('ofertaAPostular', JSON.stringify(new Oferta()));
