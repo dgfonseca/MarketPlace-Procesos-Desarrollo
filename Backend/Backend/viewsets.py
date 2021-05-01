@@ -41,6 +41,39 @@ class CantidadProductoCatalogoViewset(viewsets.ModelViewSet):
 
 
 class ProductoViewset(viewsets.ModelViewSet):
+    @csrf_exempt
+    def create(self, request, *args, **kwargs):
+        try:
+            productoCatalogo = models.ProductoCatalogo.objects.get(id=request.data["productoCatalogo"])
+            producto = models.Producto.objects.create(precioPorUnidad=request.data["precioPorUnidad"],
+                                                      cantidadDisponible=request.data["cantidadDisponible"],
+                                                      productoCatalogo=productoCatalogo)
+            return Response(self.get_serializer(producto).data, status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response({"message": "Error al crear el producto"}, status=status.HTTP_400_BAD_REQUEST)
+ 
+    @csrf_exempt
+    def retrieve(self, request, *args, **kwargs):
+        try:
+            productos = list(models.Producto.objects.filter(productoCatalogo=kwargs.get('pk')))
+            if len(productos) != 0 and productos is not None and productos != []:
+                max_productos = \
+                    models.Producto.objects.filter(productoCatalogo=kwargs.get('pk')).aggregate(Max('precioPorUnidad'))[
+                        'precioPorUnidad__max']
+                average_productos = \
+                    models.Producto.objects.filter(productoCatalogo=kwargs.get('pk')).aggregate(Avg('precioPorUnidad'))[
+                        'precioPorUnidad__avg']
+                min_productos = \
+                    models.Producto.objects.filter(productoCatalogo=kwargs.get('pk')).aggregate(Min('precioPorUnidad'))[
+                        'precioPorUnidad__min']
+                return Response({'max': max_productos,
+                                 'min': min_productos,
+                                 'avg': average_productos}, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "No hay estadisticas de este producto"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"message": "Error del servidor"}, status=status.HTTP_400_BAD_REQUEST)
     queryset = models.Producto.objects.all()
     serializer_class = serializers.ProductoSerializer
 
