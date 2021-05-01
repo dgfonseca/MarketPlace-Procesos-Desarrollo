@@ -50,7 +50,6 @@ class ProductoViewset(viewsets.ModelViewSet):
                                                       productoCatalogo=productoCatalogo)
             return Response(self.get_serializer(producto).data, status=status.HTTP_200_OK)
         except Exception as e:
-            print(e)
             return Response({"message": "Error al crear el producto"}, status=status.HTTP_400_BAD_REQUEST)
  
     @csrf_exempt
