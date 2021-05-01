@@ -40,6 +40,8 @@ class ProductoSerializer(serializers.ModelSerializer):
         model = models.Producto
         fields = '__all__'
 
+
+
 class OfertaProductorSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.OfertaProductor

@@ -46,7 +46,7 @@ class CantidadProductoCatalogo(models.Model):
 class Producto(models.Model):
     precioPorUnidad = models.FloatField(blank=False, null=False)
     cantidadDisponible = models.IntegerField(blank=False, null=False)
-    productoCatalogo = models.ForeignKey(ProductoCatalogo, on_delete=models.CASCADE, blank=True, null=True)
+    productoCatalogo = models.ForeignKey(ProductoCatalogo, on_delete=models.CASCADE, blank=False, null=False)
 
 
 class OfertaProductor(models.Model):
