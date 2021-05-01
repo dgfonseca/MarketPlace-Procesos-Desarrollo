@@ -29,7 +29,7 @@ class PedidoUsuarioViewset(viewsets.ModelViewSet):
 class ProductoCatalogoViewset(viewsets.ModelViewSet):
     queryset = models.ProductoCatalogo.objects.all()
     serializer_class = serializers.ProductoCatalogoSerializer
-@csrf_exempt
+    @csrf_exempt
     def create(self, request, *args, **kwargs):
         try:
             if 'nombre' in request.data:
