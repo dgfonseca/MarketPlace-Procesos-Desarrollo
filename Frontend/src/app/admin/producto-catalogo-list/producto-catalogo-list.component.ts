@@ -18,10 +18,19 @@ export class ProductoCatalogoListComponent implements OnInit {
         this.productoCatalogoService = productoCatalogoService;
     }
 
-    eliminar(id: number) {
-        this.productoCatalogoService.deleteProductoCatalogo(id).subscribe();
-        window.location.reload();
+  eliminar(id:number) {
+    if(confirm("Está seguro que quiere eliminar el producto del catalogo?")){
+      this.productoCatalogoService.deleteProductoCatalogo(id).subscribe(resp =>{
+        if(resp.status===204){
+          alert("El producto del catálogo fue eliminado exitosamente");
+          this.productoCatalogoService.getProductosCatalogo().subscribe(productosCatalogo => this.productosCatalogo = productosCatalogo);
+        }
+        else{
+          alert("El producto del catálogo no pudo ser eliminado");
+        }
+      });
     }
+  }
 
     cambiarActivado(id: number, productoCatalogo: ProductoCatalogo, estado: boolean) {
         if (confirm("Está seguro que quiere desactivar este producto?")) {
@@ -48,7 +57,7 @@ export class ProductoCatalogoListComponent implements OnInit {
         }
         return 0;
     }
-  
+
     ngOnInit(): void {
         this.productoCatalogoService.getProductosCatalogo().subscribe(productosCatalogo => {
             this.productosCatalogo = productosCatalogo;

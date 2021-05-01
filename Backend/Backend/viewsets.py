@@ -83,7 +83,15 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
         except Exception as e:
             return Response({"message": e}, status=status.HTTP_409_CONFLICT)
 
-            
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        productos = models.Producto.objects.filter(productoCatalogo=kwargs["pk"])
+        if productos:
+            return Response(status = status.HTTP_406_NOT_ACCEPTABLE)
+        self.perform_destroy(instance)
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
 class CanastaViewset(viewsets.ModelViewSet):
     queryset = models.Canasta.objects.all()
     serializer_class = serializers.CanastaSerializer
