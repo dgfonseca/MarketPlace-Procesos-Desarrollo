@@ -20,7 +20,7 @@ export class EstablecerPrecioComponent implements OnInit {
     this.productoCatalogoService.getProductoCatalogo(route.snapshot.params['id']).subscribe((productoCatalogo) => {
       this.productoCatalogo = productoCatalogo;
       (<HTMLInputElement>document.getElementsByName("precio")[0]).value = String(this.productoCatalogo.precioPorUnidad);
-      (<HTMLInputElement>document.getElementsByName("nombre")[0]).innerHTML = String(this.productoCatalogo.precioPorUnidad);
+      (<HTMLInputElement>document.getElementsByName("nombre")[0]).innerHTML = String(this.productoCatalogo.nombre);
     });
     this.productoCatalogoService.getProductInformation(route.snapshot.params['id']).subscribe((objeto)=>{
       this.estadisticas = objeto;
