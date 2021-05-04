@@ -19,7 +19,7 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
       (<HTMLInputElement>document.getElementsByName("nombre")[0]).value = this.productoCatalogo.nombre;
       (<HTMLInputElement>document.getElementsByName("fotoProducto")[0]).value = this.productoCatalogo.fotoProducto;
       (<HTMLInputElement>document.getElementsByName("unidad")[0]).value = this.productoCatalogo.unidad;
-      (<HTMLInputElement>document.getElementsByName("precio")[0]).value = String(this.productoCatalogo.precioPorUnidad);
+      (<HTMLInputElement>document.getElementsByName("precio")[0]).innerHTML = String(this.productoCatalogo.precioPorUnidad);
     });
   }
 
