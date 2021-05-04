@@ -1,1 +1,73 @@
-<p>establecer-precio works!</p>
+<h1 class="title">Actualización de precio</h1>
+<div class="column is-12 is-offset-0">
+  <div class="box">
+    <div class="box">
+      <form id="form">
+        <div class="field columns mb-0">
+          <div class="column">
+            <b>Nombre:</b>
+          </div>
+          <div class="column">
+            <p>{{productoCatalogo.nombre}}</p>
+          </div>
+        </div>
+        <div class="field columns mb-0">
+          <div class="column">
+            <b>Precio base (Por unidad 1 Kg):</b>
+          </div>
+          <div class="column">
+            <div class="control column">
+              <input
+                class="input is-medium"
+                type="number"
+                name="precio"
+                min="0"
+                step=".01"
+                placeholder="Precio"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="field columns mb-0">
+          <div class="column">
+            <b>Mínimo:</b>
+          </div>
+          <div class="column">
+            <b>Promedio:</b>
+          </div>
+          <div class="column">
+            <b>Máximo:</b>
+          </div>
+        </div>       
+        <div class="field columns mb-0">
+          <div class="column">
+            <p name="min">{{estadisticas.min}}</p>
+          </div>
+          <div class="column">
+            <p name="avg">{{estadisticas.avg}}</p>
+          </div>
+          <div class="column">
+            <p name="max">{{estadisticas.max}}</p>
+          </div>
+        </div>    
+       
+        <div class="columns">
+          <div class="column">
+            <button
+              class="button is-danger is-medium is-fullwidth"
+              id="cancelar"
+            >Cancelar</button
+            >
+          </div>
+          <div class="column">
+            <button class="button is-info is-medium is-fullwidth"  id="modificar">
+              Modificar precio
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+</div>

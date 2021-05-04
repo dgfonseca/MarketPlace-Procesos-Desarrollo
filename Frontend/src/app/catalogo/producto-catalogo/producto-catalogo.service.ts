@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {ProductoCatalogo} from "./producto-catalogo";
+import {Estadisticas} from "../estadisticas";
 import {HttpClient} from "@angular/common/http";
 import * as globals from "../../globals";
 
@@ -31,5 +32,11 @@ export class ProductoCatalogoService {
   deleteProductoCatalogo(id: number) {
     return this.http.delete<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO + id + "/")
   }
+
+  getProductInformation(id: number) {
+    return this.http.get<Estadisticas>(globals.API_IP + globals.PRODUCTO + id + "/")
+  }
+
+  
 
 }
