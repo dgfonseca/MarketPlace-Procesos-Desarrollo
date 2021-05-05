@@ -2,21 +2,20 @@
 <div class="column is-12 is-offset-0">
   <div class="box">
     <div class="box">
-      <form id="form">
-        <div class="field columns mb-0">
+      <form id="form" onsubmit="return false">
+        <div class="field columns mb-0 is-vcentered">
           <div class="column">
-            <b>Nombre:</b>
+            <b class="is-size-4">Nombre:</b>
           </div>
           <div class="column">
-            <p name="nombre"></p>
+            <p class="is-size-4 m-0" name="nombre"></p>
           </div>
         </div>
-        <div class="field columns mb-0">
+        <div class="field columns mb-0 is-vcentered">
           <div class="column">
-            <b>Precio base (Por unidad 1 Kg):</b>
+            <b class="is-size-4">Precio base (Por unidad 1 Kg):</b>
           </div>
           <div class="column">
-            <div class="control column">
               <input
                 class="input is-medium"
                 type="number"
@@ -26,38 +25,38 @@
                 placeholder="Precio"
                 required
               />
-            </div>
+          </div>
+        </div>
+        <div class="field columns mb-0 is-vcentered">
+          <div class="column">
+            <b class="is-size-5">Mínimo:</b>
+          </div>
+          <div class="column">
+            <b class="is-size-5">Promedio:</b>
+          </div>
+          <div class="column">
+            <b class="is-size-5">Máximo:</b>
           </div>
         </div>
         <div class="field columns mb-0">
           <div class="column">
-            <b>Mínimo:</b>
+            <p class="is-size-5" name="min"></p>
           </div>
           <div class="column">
-            <b>Promedio:</b>
+            <p class="is-size-5" name="avg"></p>
           </div>
           <div class="column">
-            <b>Máximo:</b>
+            <p class="is-size-5" name="max"></p>
           </div>
-        </div>       
-        <div class="field columns mb-0">
-          <div class="column">
-            <p name="min"></p>
-          </div>
-          <div class="column">
-            <p name="avg"></p>
-          </div>
-          <div class="column">
-            <p name="max"></p>
-          </div>
-        </div>    
-       
+        </div>
+
         <div class="columns">
           <div class="column">
-            <button
-              class="button is-danger is-medium is-fullwidth"
+            <a
+              href="/admin/producto-catalogo/list"
+              class="button is-danger is-medium is-fullwidth text-decoration-none"
               id="cancelar"
-            >Cancelar</button
+            >Cancelar</a
             >
           </div>
           <div class="column">
@@ -68,6 +67,6 @@
         </div>
       </form>
     </div>
-    
+
   </div>
 </div>

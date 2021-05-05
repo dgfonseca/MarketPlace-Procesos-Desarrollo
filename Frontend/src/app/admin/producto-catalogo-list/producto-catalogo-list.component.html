@@ -7,6 +7,7 @@
           <div class="has-text-centered is-size-3 columns">
             <div class="column">
               <a
+                class="text-decoration-none"
                 href="/catalogo/producto-catalogo/{{productoCatalogo.id}}"
               >{{productoCatalogo.nombre}}</a
               >
@@ -15,21 +16,21 @@
           <div class="columns m-0">
             <div class="column">
               <a
-                class="button is-info is-medium is-fullwidth"
+                class="button is-info is-medium is-fullwidth text-decoration-none"
                 href="/catalogo/producto-catalogo/update/{{productoCatalogo.id}}"
               >Editar</a
               >
             </div>
             <div class="column">
               <a
-                class="button is-info is-medium is-fullwidth"
+                class="button is-info is-medium is-fullwidth text-decoration-none"
                 href="/admin/producto-catalogo/establecer-precio/{{productoCatalogo.id}}"
               >Editar precio</a
               >
             </div>
             <div class="column" *ngIf="productoCatalogo.activado == true">
               <button
-                class="button is-info is-medium is-fullwidth"
+                class="button is-info is-medium is-fullwidth text-decoration-none"
                 (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
               >Deshabilitar
               </button

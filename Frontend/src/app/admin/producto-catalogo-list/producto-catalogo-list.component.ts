@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {ProductoCatalogoService} from "../../catalogo/producto-catalogo/producto-catalogo.service";
 import {ProductoCatalogo} from "../../catalogo/producto-catalogo/producto-catalogo";
+import * as operators from 'rxjs/add/operator/catch';
 
 @Component({
     selector: 'app-producto-catalogo-list',
@@ -28,6 +29,8 @@ export class ProductoCatalogoListComponent implements OnInit {
         else{
           alert("El producto del catálogo no pudo ser eliminado");
         }
+      }, error => {
+        alert("El producto del catálogo no pudo ser eliminado");
       });
     }
   }
@@ -44,6 +47,8 @@ export class ProductoCatalogoListComponent implements OnInit {
                 } else {
                     alert("El producto del catálogo no pudo ser actualizado");
                 }
+            }, error => {
+              alert("El producto del catálogo no pudo ser actualizado");
             });
         }
     }

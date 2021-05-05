@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include,re_path
+from django.urls import path, include, re_path
 from . import viewsets
 
 from . import router
@@ -21,7 +21,8 @@ from . import router
 urlpatterns = [
     path('api/', include(router.router.urls)),
     path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset"),
-    path('api/productoCatalogo/<int:pk>', viewsets.ProductoCatalogoViewset.as_view({'put':'update'}), name="ProductoCatalogoViewset"),
+    path('api/productoCatalogo/<int:pk>', viewsets.ProductoCatalogoViewset.as_view({'put': 'update'}),
+         name="ProductoCatalogoViewset"),
     path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset"),
     path('api/producto/<int:pk>', viewsets.ProductoViewset.as_view({'get': 'retrieve'}), name="ProductoViewset")
 ]

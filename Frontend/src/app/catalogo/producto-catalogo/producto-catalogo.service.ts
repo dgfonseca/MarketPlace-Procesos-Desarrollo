@@ -37,6 +37,6 @@ export class ProductoCatalogoService {
     return this.http.get<Estadisticas>(globals.API_IP + globals.PRODUCTO + id + "/")
   }
 
-  
+
 
 }

@@ -1,7 +1,7 @@
 <div class="column">
   <h3 class="title">Modificación de producto del catalogo</h3>
   <div class="box">
-    <form id="form">
+    <form id="form" onsubmit="return false">
       <div class="field">
         <div class="control">
           <input
@@ -26,7 +26,7 @@
           />
         </div>
       </div>
-      <div class="field columns mb-0">
+      <div class="field columns mb-0 is-vcentered">
         <div class="control column">
           <input
             class="input is-medium"
@@ -36,12 +36,12 @@
             required
           />
         </div>
-        <div class="control column">
-          <p name="precio"></p>
+        <div class="column">
+          <p class="is-size-4 m-0" name="precio"></p>
         </div>
         <div class="column">
           <a
-            class="button is-info is-medium is-fullwidth"
+            class="button is-info is-medium is-fullwidth text-decoration-none"
             href="/admin/producto-catalogo/establecer-precio/{{productoCatalogo.id}}"
           >Editar precio</a
           >
@@ -49,10 +49,11 @@
       </div>
       <div class="columns">
         <div class="column">
-          <button
-            class="button is-danger is-medium is-fullwidth"
+          <a
+            href="/admin/producto-catalogo/list"
+            class="button is-danger is-medium is-fullwidth text-decoration-none"
             id="cancelar"
-          >Cancelar</button
+          >Cancelar</a
           >
         </div>
         <div class="column">

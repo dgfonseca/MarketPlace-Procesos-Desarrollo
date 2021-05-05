@@ -35,6 +35,7 @@ class PedidoUsuarioViewset(viewsets.ModelViewSet):
 class ProductoCatalogoViewset(viewsets.ModelViewSet):
     queryset = models.ProductoCatalogo.objects.all()
     serializer_class = serializers.ProductoCatalogoSerializer
+
     @csrf_exempt
     def create(self, request, *args, **kwargs):
         try:
@@ -61,10 +62,13 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
         try:
             if "precioPorUnidad" not in request.data:
                 if 'nombre' in request.data:
-                    producto = list(ProductoCatalogo.objects.filter(nombre=request.data["nombre"]))
-                    if producto or producto != [] or len(producto) != 0:
-                        return Response({"message": "Producto con ese nombre ya existe"},
+                    producto = ProductoCatalogo.objects.filter(nombre=request.data["nombre"]).first()
+                    if producto:
+                        if producto.id != request.data["id"]:
+                            return Response({"message": "Producto con ese nombre ya existe"},
                                         status=status.HTTP_409_CONFLICT)
+                        else:
+                            return update_producto_catalogo(request, **kwargs)
                     else:
                         return update_producto_catalogo(request, **kwargs)
                 else:
@@ -76,26 +80,32 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
                                         status=status.HTTP_406_NOT_ACCEPTABLE)
                     else:
                         if 'nombre' in request.data:
-                            producto = list(ProductoCatalogo.objects.filter(nombre=request.data["nombre"]))
-                            if producto or producto != [] or len(producto) != 0:
-                                return Response({"message": "Producto con ese nombre ya existe"},
+                            producto = ProductoCatalogo.objects.filter(nombre=request.data["nombre"]).first()
+                            if producto:
+                                if producto.id != request.data["id"]:
+                                    print(Response({"message": "Producto con ese nombre ya existe"},
+                                                   status=status.HTTP_409_CONFLICT))
+                                    return Response({"message": "Producto con ese nombre ya existe"},
                                                 status=status.HTTP_409_CONFLICT)
+                                else:
+                                    return update_producto_catalogo(request, **kwargs)
                             else:
                                 return update_producto_catalogo(request, **kwargs)
                         else:
                             return update_producto_catalogo(request, **kwargs)
                 except Exception:
-                    return Response({"message":"El precio debe ser un numero"}, status=status.HTTP_406_NOT_ACCEPTABLE)
+                    return Response({"message": "El precio debe ser un numero"}, status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:
+            print(e)
             return Response({"message": e}, status=status.HTTP_409_CONFLICT)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         productos = models.Producto.objects.filter(productoCatalogo=kwargs["pk"])
         if productos:
-            return Response(status = status.HTTP_406_NOT_ACCEPTABLE)
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         self.perform_destroy(instance)
-        return Response(status = status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class CanastaViewset(viewsets.ModelViewSet):
@@ -141,6 +151,7 @@ class ProductoViewset(viewsets.ModelViewSet):
                 return Response({"message": "No hay estadisticas de este producto"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"message": "Error del servidor"}, status=status.HTTP_400_BAD_REQUEST)
+
     queryset = models.Producto.objects.all()
     serializer_class = serializers.ProductoSerializer
 

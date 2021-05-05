@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductoCatalogoService} from "../producto-catalogo.service";
 import {ProductoCatalogo} from "../producto-catalogo";
+import * as operators from 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'app-producto-catalogo-create',
