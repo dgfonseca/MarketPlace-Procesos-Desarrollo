@@ -22,6 +22,8 @@ export class EstablecerPrecioComponent implements OnInit {
       this.productoCatalogo = productoCatalogo;
       (<HTMLInputElement>document.getElementsByName("precio")[0]).value = String(this.productoCatalogo.precioPorUnidad);
       (<HTMLInputElement>document.getElementsByName("nombre")[0]).innerHTML = String(this.productoCatalogo.nombre);
+      (<HTMLInputElement>document.getElementsByName("unidad")[0]).innerHTML = "Precio base ("+String(this.productoCatalogo.unidad)+"):";
+      
     });
     this.productoCatalogoService.getProductInformation(route.snapshot.params['id']).subscribe((objeto) => {
       this.estadisticas = objeto;
