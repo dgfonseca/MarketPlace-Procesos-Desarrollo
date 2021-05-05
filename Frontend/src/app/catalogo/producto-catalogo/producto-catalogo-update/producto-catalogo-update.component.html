@@ -37,15 +37,14 @@
           />
         </div>
         <div class="control column">
-          <input
-            class="input is-medium"
-            type="number"
-            name="precio"
-            min="0"
-            step=".01"
-            placeholder="Precio"
-            required
-          />
+          <p name="precio"></p>
+        </div>
+        <div class="column">
+          <a
+            class="button is-info is-medium is-fullwidth"
+            href="/admin/producto-catalogo/establecer-precio/{{productoCatalogo.id}}"
+          >Editar precio</a
+          >
         </div>
       </div>
       <div class="columns">
