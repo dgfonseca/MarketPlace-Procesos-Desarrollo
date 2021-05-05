@@ -274,7 +274,7 @@ class GM_10_Tests(TestCase):
                 "productoCatalogo": producto_catalogo.id
             }
         ), content_type="application/json")
-        response = self.client.get('/api/producto/'+str(1)+'/')
+        response = self.client.get('/api/producto/'+str(producto_catalogo.id)+'/')
         current_data = json.loads(response.content)
         http_response = response.status_code
         self.assertEqual(current_data["max"], 1500)
