@@ -19,11 +19,12 @@ export class ProductoCatalogoListComponent implements OnInit {
         this.productoCatalogoService = productoCatalogoService;
     }
 
-  eliminar(id:number) {
+  eliminar(productoCatalogo:ProductoCatalogo) {
     if(confirm("Está seguro que quiere eliminar el producto del catalogo?")){
-      this.productoCatalogoService.deleteProductoCatalogo(id).subscribe(resp =>{
+      this.productoCatalogoService.deleteProductoCatalogo(productoCatalogo.id).subscribe(resp =>{
         if(resp.status===204){
           alert("El producto del catálogo fue eliminado exitosamente");
+          this.productoCatalogoService.deleteImage(productoCatalogo.nombre).subscribe();
           this.productoCatalogoService.getProductosCatalogo().subscribe(productosCatalogo => this.productosCatalogo = productosCatalogo);
         }
         else{

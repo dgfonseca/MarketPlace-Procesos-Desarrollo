@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {ProductoCatalogo} from "./producto-catalogo";
 import {Estadisticas} from "../estadisticas";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as globals from "../../globals";
 
 @Injectable({
@@ -22,7 +22,7 @@ export class ProductoCatalogoService {
   }
 
   createProductoCatalogo(productoCatalogo: ProductoCatalogo) {
-    return this.http.post<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO, productoCatalogo)
+    return this.http.post<ProductoCatalogo>(globals.API_IP + globals.PRODUCTO_CATALOGO, productoCatalogo, {observe: 'response'})
   }
 
   updateProductoCatalogo(id: number, productoCatalogo: ProductoCatalogo) {
@@ -37,6 +37,16 @@ export class ProductoCatalogoService {
     return this.http.get<Estadisticas>(globals.API_IP + globals.PRODUCTO + id + "/")
   }
 
+  putImage(nombre: string, extension: string, file: File) {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('extension', extension);
+    return this.http.put<any>(globals.IMAGE_API + globals.IMAGE + nombre, formData)
+  }
+
+  deleteImage(nombre: string) {
+    return this.http.delete<any>(globals.IMAGE_API + globals.IMAGE + nombre)
+  }
 
 
 }
