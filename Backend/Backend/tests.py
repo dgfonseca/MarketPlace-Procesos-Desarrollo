@@ -261,7 +261,6 @@ class GM_09_Tests(TestCase):
 
 from .models import Producto
 
-
 class GM_10_Tests(TestCase):
 
     def test_estadisticas_producto(self):
