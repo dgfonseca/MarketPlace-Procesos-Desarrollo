@@ -93,7 +93,8 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
                                 return update_producto_catalogo(request, **kwargs)
                         else:
                             return update_producto_catalogo(request, **kwargs)
-                except Exception:
+                except Exception as e:
+                    print(e)
                     return Response({"message": "El precio debe ser un numero"}, status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:
             print(e)

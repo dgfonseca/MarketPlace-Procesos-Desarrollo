@@ -156,7 +156,7 @@ class GM_09_Tests(TestCase):
 
         response = self.client.put('/api/producto-catalogo/'+str(producto.id)+'/', json.dumps(
             {
-                "nombre": "Producto 1",
+                "nombre": "Producto 2",
                 "precioPorUnidad": 1500,
                 "fotoProducto": "Fotoasdsad",
                 "unidad": "Libras",
