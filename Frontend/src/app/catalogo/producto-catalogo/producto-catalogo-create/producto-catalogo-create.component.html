@@ -1,7 +1,7 @@
 <div class="column">
   <h3 class="title">Registro de producto del catalogo</h3>
   <div class="box">
-    <form id="form">
+    <form id="form" onsubmit="return false">
       <div class="field">
         <div class="control">
           <input
@@ -14,15 +14,30 @@
           />
         </div>
       </div>
-      <div class="field">
-        <div class="control">
+      <div class="field columns is-vcentered m-0">
+        <div class="column has-text-left is-7">
+          <label class="is-size-5">Ingrese el link o suba su propia imagen del producto con el siguiente
+            botón:</label>
+        </div>
+
+        <div class="control column is-3">
+          <input type="file" name="file" id="file" accept="image/*"/>
+        </div>
+        <div class="control column is-2">
+          <button class="button is-danger is-fullwidth" id="removeFile">
+            Remover imagen
+          </button>
+        </div>
+      </div>
+      <div class="field columns is-vcentered">
+        <div class="control column ">
           <input
             class="input is-medium"
             type="url"
             name="fotoProducto"
             placeholder="Foto Producto"
+            id="url"
             autofocus=""
-            required
           />
         </div>
       </div>
