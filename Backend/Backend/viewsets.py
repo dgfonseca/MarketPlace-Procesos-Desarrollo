@@ -75,14 +75,14 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
                     return update_producto_catalogo(request, **kwargs)
             else:
                 try:
-                    if request.data["precioPorUnidad"] <= 0:
+                    if int(request.data["precioPorUnidad"]) <= 0:
                         return Response({"message": "El precio no puede ser menor o igual a 0"},
                                         status=status.HTTP_406_NOT_ACCEPTABLE)
                     else:
                         if 'nombre' in request.data:
                             producto = ProductoCatalogo.objects.filter(nombre=request.data["nombre"]).first()
                             if producto:
-                                if producto.id != request.data["id"]:
+                                if producto.id != kwargs.get('pk'):
                                     print(Response({"message": "Producto con ese nombre ya existe"},
                                                    status=status.HTTP_409_CONFLICT))
                                     return Response({"message": "Producto con ese nombre ya existe"},

@@ -39,6 +39,25 @@ class GM71Tests(TestCase):
         self.assertEqual(request_delete.status_code, 406)
 
 class GM_09_Tests(TestCase):
+
+    def test_put_producto_catalogo_nombre_existe(self):
+        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
+        producto2 = ProductoCatalogo.objects.create(nombre="Producto 2", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
+
+        response = self.client.put('/api/producto-catalogo/'+str(producto.id)+'/', json.dumps(
+            {
+                "nombre": "Producto 2",
+                "precioPorUnidad": 1500,
+                "fotoProducto": "Fotoasdsad",
+                "unidad": "Libras",
+                "activado": False
+            }
+        ), content_type="application/json")
+
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data['message'], 'Producto con ese nombre ya existe')
+        self.assertEqual(http_response, 409)
     def test_post_producto_catalogo(self):
         response = self.client.post('/api/producto-catalogo/', json.dumps(
             {
@@ -149,25 +168,6 @@ class GM_09_Tests(TestCase):
         self.assertEqual(current_data["nombre"], "Producto 1")
         self.assertEqual(http_response, 200)
 
-
-    def test_put_producto_catalogo_nombre_existe(self):
-        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
-        producto2 = ProductoCatalogo.objects.create(nombre="Producto 2", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
-
-        response = self.client.put('/api/producto-catalogo/'+str(producto.id)+'/', json.dumps(
-            {
-                "nombre": "Producto 2",
-                "precioPorUnidad": 1500,
-                "fotoProducto": "Fotoasdsad",
-                "unidad": "Libras",
-                "activado": False
-            }
-        ), content_type="application/json")
-
-        current_data = json.loads(response.content)
-        http_response = response.status_code
-        self.assertEqual(current_data['message'], 'Producto con ese nombre ya existe')
-        self.assertEqual(http_response, 409)
 
     def test_put_precio_producto_catalogo(self):
         producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
