@@ -22,13 +22,15 @@ export class EstablecerPrecioComponent implements OnInit {
       this.productoCatalogo = productoCatalogo;
       (<HTMLInputElement>document.getElementsByName("precio")[0]).value = String(this.productoCatalogo.precioPorUnidad);
       (<HTMLInputElement>document.getElementsByName("nombre")[0]).innerHTML = String(this.productoCatalogo.nombre);
+      (<HTMLInputElement>document.getElementsByName("unidad")[0]).innerHTML = "Precio base ("+String(this.productoCatalogo.unidad)+"):";
+      
     });
     this.productoCatalogoService.getProductInformation(route.snapshot.params['id']).subscribe((objeto) => {
       this.estadisticas = objeto;
       if (this.estadisticas.min != undefined) {
-        (<HTMLInputElement>document.getElementsByName("min")[0]).innerHTML = String(this.estadisticas.min);
-        (<HTMLInputElement>document.getElementsByName("max")[0]).innerHTML = String(this.estadisticas.max);
-        (<HTMLInputElement>document.getElementsByName("avg")[0]).innerHTML = String(this.estadisticas.avg);
+        (<HTMLInputElement>document.getElementsByName("min")[0]).innerHTML = "$ "+String(this.estadisticas.min)+" COP";
+        (<HTMLInputElement>document.getElementsByName("max")[0]).innerHTML = "$ "+String(this.estadisticas.max)+" COP";
+        (<HTMLInputElement>document.getElementsByName("avg")[0]).innerHTML = "$ "+String(Math.round(Number(this.estadisticas.avg)))+" COP";
       } else {
         (<HTMLInputElement>document.getElementsByName("min")[0]).innerHTML = "-";
         (<HTMLInputElement>document.getElementsByName("max")[0]).innerHTML = "-";
