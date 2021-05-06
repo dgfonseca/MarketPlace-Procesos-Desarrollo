@@ -5,7 +5,7 @@ import {CantidadProducto} from "./catalogo/cantidad-producto";
 import {Canasta} from "./catalogo/canasta/canasta";
 import {CantidadProductoCatalogo} from "./catalogo/cantidad-producto-catalogo";
 
-export const API_IP = "http://localhost:4200/api/";
+export const API_IP = "https://marketplace-procesos-back.herokuapp.com/api/";
 export const CLIENTE = "cliente/";
 export const PEDIDO_CLIENTE = "pedido-cliente/";
 export const CANTIDAD_PRODUCTO_CATALOGO = "cantidad-producto-catalogo/";
