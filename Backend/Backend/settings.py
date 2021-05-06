@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Backend',
-    'corsheaders'
+    'corsheaders',
     'whitenoise.runserver_nostatic',
     'rest_framework',
 
