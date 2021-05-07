@@ -97,8 +97,7 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
                     print(e)
                     return Response({"message": "El precio debe ser un numero"}, status=status.HTTP_406_NOT_ACCEPTABLE)
         except Exception as e:
-            print(e)
-            return Response({"message": e}, status=status.HTTP_409_CONFLICT)
+            return Response({"message": str(e)}, status=status.HTTP_409_CONFLICT)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
