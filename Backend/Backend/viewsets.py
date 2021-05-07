@@ -82,7 +82,11 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
                         if 'nombre' in request.data:
                             producto = ProductoCatalogo.objects.filter(nombre=request.data["nombre"]).first()
                             if producto:
+                                print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                                print(kwargs.get('pk'))
+                                print(producto.id)
                                 if str(producto.id) != str(kwargs.get('pk')):
+
 
                                     return Response({"message": "Producto con ese nombre ya existe"},
                                                 status=status.HTTP_409_CONFLICT)
