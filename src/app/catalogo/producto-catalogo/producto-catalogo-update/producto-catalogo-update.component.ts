@@ -49,13 +49,13 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
           if (this.fileUpload) {
             // @ts-ignore
             this.productoCatalogoService.putImage(this.productoCatalogo.nombre, extension, file).subscribe(() => {
-              if (resp.status === 200) {
-                alert("El producto del catálogo fue actualizado exitosamente");
-                window.location.href = "/admin/producto-catalogo/list";
-              } else {
-                alert("El producto del catálogo no pudo ser actualizado");
-              }
             });
+            if (resp.status === 200) {
+              alert("El producto del catálogo fue actualizado exitosamente");
+              window.location.href = "/admin/producto-catalogo/list";
+            } else {
+              alert("El producto del catálogo no pudo ser actualizado");
+            }
           }
         }, error => alert("El producto del catálogo no pudo ser actualizado"));
       } else {
