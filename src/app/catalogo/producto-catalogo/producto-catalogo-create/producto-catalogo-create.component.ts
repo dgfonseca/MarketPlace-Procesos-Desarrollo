@@ -43,12 +43,12 @@ export class ProductoCatalogoCreateComponent implements OnInit {
             // @ts-ignore
             this.productoCatalogoService.putImage(productoCatalogo.nombre, extension, file).subscribe(() => {
             });
-            if (resp.status === 201) {
-              alert("El producto del catálogo fue creado exitosamente");
-              window.location.href = "/admin/home";
-            } else {
-              alert("El producto del catálogo no pudo ser creado");
-            }
+          }
+          if (resp.status === 201) {
+            alert("El producto del catálogo fue creado exitosamente");
+            window.location.href = "/admin/home";
+          } else {
+            alert("El producto del catálogo no pudo ser creado");
           }
         }, error => alert("El producto del catálogo no pudo ser creado"));
       } else {
