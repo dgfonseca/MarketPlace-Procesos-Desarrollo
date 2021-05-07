@@ -55,7 +55,7 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
             else:
                 return Response({"message": "Tiene que enviar un nombre"}, status=status.HTTP_409_CONFLICT)
         except Exception as e:
-            return Response({"message": e}, status=status.HTTP_409_CONFLICT)
+            return Response({"message": str(e)}, status=status.HTTP_409_CONFLICT)
 
     @csrf_exempt
     def update(self, request, *args, **kwargs):
