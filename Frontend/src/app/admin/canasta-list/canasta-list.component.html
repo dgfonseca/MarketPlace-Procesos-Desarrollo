@@ -19,22 +19,22 @@
                 href="/catalogo/producto-catalogo/{{canasta.id}}"
               >{{canasta.nombre}}</a
               >
-              <div class="column is-2" *ngIf="canasta.activado == true">
-                <button
-                  class="button is-info is-medium is-fullwidth text-decoration-none"
-                  (click)="cambiarActivado(canasta.id, canasta, canasta.activado)"
-                >Deshabilitar
-                </button
-                >
-              </div>
-              <div class="column is-2" *ngIf="canasta.activado == false">
-                <button
-                  class="button is-info is-medium is-fullwidth"
-                  (click)="cambiarActivado(canasta.id, canasta, canasta.activado)"
-                >Habilitar
-                </button
-                >
-              </div>
+            </div>
+            <div class="column is-3" *ngIf="canasta.activado == true">
+              <button
+                class="button is-info is-medium is-fullwidth text-decoration-none"
+                (click)="cambiarActivado(canasta.id, canasta, canasta.activado)"
+              >Deshabilitar
+              </button
+              >
+            </div>
+            <div class="column is-3" *ngIf="canasta.activado == false">
+              <button
+                class="button is-info is-medium is-fullwidth"
+                (click)="cambiarActivado(canasta.id, canasta, canasta.activado)"
+              >Habilitar
+              </button
+              >
             </div>
           </div>
         </div>
