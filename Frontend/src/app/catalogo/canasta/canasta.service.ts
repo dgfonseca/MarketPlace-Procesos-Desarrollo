@@ -25,7 +25,7 @@ export class CanastaService {
   }
 
   updateCanasta(id: number, canasta: Canasta) {
-    return this.http.put<Canasta>(globals.API_IP + globals.CANASTA + id + "/", canasta)
+    return this.http.put<Canasta>(globals.API_IP + globals.CANASTA + id + "/", canasta, {observe: 'response'})
   }
 
   deleteCanasta(id: number) {
