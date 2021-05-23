@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset"),
     path('api/productoCatalogo/<int:pk>', viewsets.ProductoCatalogoViewset.as_view({'put': 'update'}),
          name="ProductoCatalogoViewset"),
+    path('api/catalogo/<int:pk>', viewsets.CanastaViewset.as_view({'put':'update'}), name="CatalogoViewset"),
     path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset"),
     path('api/producto/<int:pk>', viewsets.ProductoViewset.as_view({'get': 'retrieve'}), name="ProductoViewset")
 ]

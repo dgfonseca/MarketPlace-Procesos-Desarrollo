@@ -277,7 +277,7 @@ class GM_72_Tests(TestCase):
         }
         ), content_type="application/json")
         http_response = response.status_code
-        current_data = json.loads(response.data)
+        current_data = json.loads(response.content)
         self.assertEqual(http_response, 200)
         self.assertEqual(current_data["activado"], False)
 
@@ -288,9 +288,19 @@ class GM_72_Tests(TestCase):
         }
         ), content_type="application/json")
         http_response = response.status_code
-        current_data = json.loads(response.data)
+        current_data = json.loads(response.content)
         self.assertEqual(http_response, 200)
         self.assertEqual(current_data["activado"], True)
+
+        response = self.client.put('/api/canasta/' + str(canasta.id) + '/', json.dumps({
+            "activado": "Holiwi"
+        }
+        ), content_type="application/json")
+        http_response = response.status_code
+        current_data = json.loads(response.content)
+        self.assertEqual(http_response,400)
+        self.assertEqual(current_data["message"],"No se pudo actualizar el estado de la canasta, por favor verifique los valores de la peticion")
+
 
     # def test_agregar_canasta(self):
     #     producto1 = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test",
