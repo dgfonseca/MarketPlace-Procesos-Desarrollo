@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'productor',
     loadChildren: () => import('./productor/productor.module').then(module => module.ProductorModule)
+  },
+  {
+    path: 'productor-postulante',
+    loadChildren: () => import('./productor-postulante/productor-postulante.module').then(module => module.ProductorPostulanteModule)
   }
 ];
 
