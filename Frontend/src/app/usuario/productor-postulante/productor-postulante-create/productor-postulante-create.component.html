@@ -30,7 +30,7 @@
             <div class="control">
               <input
                 class="input is-medium"
-                type="text"
+                type="email"
                 name="correo"
                 placeholder="Correo"
                 autofocus=""
@@ -42,8 +42,9 @@
           <div class="control column">
             <input
               class="input is-medium"
-              type="text"
+              type="number"
               name="celular"
+              min="0"
               placeholder="Celular"
               required
             />
@@ -51,8 +52,9 @@
           <div class="column">
             <input
               class="input is-medium"
-              type="text"
+              type="number"
               name="telefono"
+              min="0"
               placeholder="Telefono"
               required
             />
@@ -124,7 +126,7 @@
             >
           </div>
           <div class="column">
-            <button class="button is-info is-medium is-fullwidth"  id="postularse">
+            <button class="button is-info is-medium is-fullwidth"  id="postularse" (click)="create()">
               Postularse
             </button>
           </div>
@@ -132,4 +134,3 @@
       </form>
     </div>
   </div>
-  
