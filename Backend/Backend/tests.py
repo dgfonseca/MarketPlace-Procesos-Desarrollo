@@ -280,3 +280,8 @@ class GM_10_Tests(TestCase):
         self.assertEqual(current_data["min"], 1500)
         self.assertEqual(current_data["avg"], 1500)
         self.assertEqual(http_response,200)
+
+class GM_56_Tests(TestCase):
+
+    def test_postularse(self):
+        return
