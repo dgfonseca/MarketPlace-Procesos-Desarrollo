@@ -1,6 +1,7 @@
 from django.http import response
 from django.test import TestCase, Client
 from .models import ProductoCatalogo
+from .models import ProductorPostulante
 import json
 
 class GM71Tests(TestCase):
@@ -286,5 +287,25 @@ class GM_57_Tests(TestCase):
 
     def test_visualizar_productores_postulantes(self):
         productores = []
+        for i in range(5):
+            productor  = ProductorPostulante.objects.create(
+                nombreFinca="finca" + str(i),
+                nombre="productor" + str(i),
+                correo = "correo" + str(i) + "@test.com",
+                celular = "300246373" + str(i),
+                telefono = "300246373" + str(i),
+                productos = "papa, yuca, huevos, zanahoria",
+                cultivos = "cultivo papa, yuca, zanahoria",
+                procesos = "procesos",
+                vereda = "vereda" + str(i),
+                municipio = "municipio" + str(i)
+            )
+            productores.append(productor)
+        response = self.client.get('api/productores_postulantes')
+        data = json.loads(response.content)
+        self.assertEqual(len(data), len(productores))
+
+
+        
         
 

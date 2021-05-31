@@ -1,3 +1,4 @@
+from django.db.models import fields
 from rest_framework import serializers
 
 from . import models
@@ -55,4 +56,9 @@ class PedidoProductorSerializer(serializers.ModelSerializer):
 class CantidadProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CantidadProducto
+        fields = '__all__'
+
+class ProductorPostulanteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ProductorPostulante
         fields = '__all__'

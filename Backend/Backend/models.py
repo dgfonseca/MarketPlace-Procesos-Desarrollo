@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.expressions import F
 
 
 class Usuario(models.Model):
@@ -66,3 +67,16 @@ class CantidadProducto(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, blank=True, null=True)
     ofertaProductor = models.ForeignKey(OfertaProductor, on_delete=models.CASCADE, blank=False, null=False)
     pedidoProductor = models.ForeignKey(PedidoProductor, on_delete=models.CASCADE, blank=True, null=True)
+
+class ProductorPostulante(modesl.Model):
+        nombreFinca = models.CharField(max_length=50, blank=False, null=False)
+        nombre = models.CharField(max_length=50, blank=False, null=False)
+        correo = models.EmailField(blank=False, null=False)
+        celular = models.CharField(max_length=10, blank=False, null=False)
+        telefono = models.CharField(max_length=10, blank=False, null=False)
+        productos = models.CharField(max_length=250, blank=False, null=False)
+        cultivos = models.CharField(max_length=250, blank=False, null=False)
+        procesos = models.CharField(max_length=250, blank=False, null=False)
+        vereda = models.CharField(max_length=250, blank=False, null=False)
+        municipio = models.CharField(max_length=50, blank=False, null=False)
+        aceptado = models.BooleanField(default=False)
