@@ -3,13 +3,13 @@
   <div class="box">
     <div class="field">
       <div class="control has-icons-right">
-        <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto">
+        <input class="input is-medium" placeholder="Buscar por nombre del producto" type="text">
         <span class="icon is-small is-right">
           <fa-icon [icon]="faSearch"></fa-icon>
         </span>
       </div>
     </div>
-    <div class="columns is-vcentered" *ngFor="let cantidad of oferta.cantidadesProducto">
+    <div *ngFor="let cantidad of oferta.cantidadesProducto" class="columns is-vcentered">
       <div class="column is-5 has-text-left is-size-3">
         <a
           href=""
@@ -20,12 +20,12 @@
         <div class="field mb-0">
           <div class="control">
             <input
-              class="input is-medium has-text-right cantidad"
-              type="number"
-              name="cantidad"
-              value="{{cantidad.cantidad}}"
-              required
               (change)="cambio(cantidad.producto.productoCatalogo, $event)"
+              class="input is-medium has-text-right cantidad"
+              name="cantidad"
+              required
+              type="number"
+              value="{{cantidad.cantidad}}"
             />
           </div>
         </div>
@@ -40,12 +40,12 @@
         <div class="field mb-0">
           <div class="control">
             <input
-              class="input is-medium has-text-left"
-              type="number"
-              name="precio"
-              value="{{cantidad.producto.precioPorUnidad}}"
-              required
               (change)="cambioPrecio(cantidad.producto.productoCatalogo, $event)"
+              class="input is-medium has-text-left"
+              name="precio"
+              required
+              type="number"
+              value="{{cantidad.producto.precioPorUnidad}}"
             />
           </div>
         </div>
@@ -53,8 +53,8 @@
 
       <div class="column is-3">
         <button
-          class="button is-danger is-medium is-fullwidth"
           (click)="eliminar(cantidad.producto.productoCatalogo)"
+          class="button is-danger is-medium is-fullwidth"
         >Eliminar
         </button
         >
@@ -71,8 +71,8 @@
       </div>
       <div class="column">
         <button
-          class="button is-info is-medium is-fullwidth"
           (click)="crear()"
+          class="button is-info is-medium is-fullwidth"
         >Crear oferta
         </button
         >

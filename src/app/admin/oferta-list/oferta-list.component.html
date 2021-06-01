@@ -12,14 +12,14 @@
       </div>
       <div class="field column is-expanded">
         <div class="control has-icons-right">
-          <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto">
+          <input class="input is-medium" placeholder="Buscar por nombre del producto" type="text">
           <span class="icon is-small is-right">
           <fa-icon [icon]="faSearch"></fa-icon>
         </span>
         </div>
       </div>
     </div>
-    <div class="columns is-vcentered" *ngFor="let productor of productores">
+    <div *ngFor="let productor of productores" class="columns is-vcentered">
       <div class="column is-9 has-text-left is-size-3">
         <a
           href="/usuario/productor/detail/{{productor.id}}"

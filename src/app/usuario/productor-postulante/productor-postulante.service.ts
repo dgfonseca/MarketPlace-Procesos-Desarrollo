@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {ProductorPostulante} from "./productor-postulante";
-import * as globals from "../../globals";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ProductorPostulante} from './productor-postulante';
+import * as globals from '../../globals';
 
 @Injectable({
   providedIn: 'root'

@@ -57,7 +57,7 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
               }
             });
           }
-        }, error => alert("El producto del catálogo no pudo ser actualizado"));
+        }, error => alert(error.error.message));
       } else {
         alert("Hay campos que no tienen contenido, lo que impide la actualización del producto");
       }

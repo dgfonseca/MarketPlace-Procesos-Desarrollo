@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {Productor} from "../../usuario/productor/productor";
-import {ProductorService} from "../../usuario/productor/productor.service";
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {Productor} from '../../usuario/productor/productor';
+import {ProductorService} from '../../usuario/productor/productor.service';
 
 @Component({
   selector: 'app-oferta-list',
@@ -19,7 +19,7 @@ export class OfertaListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productorService.getProductores().subscribe(productores => this.productores=productores);
+    this.productorService.getProductores().subscribe(productores => this.productores = productores);
   }
 
 }

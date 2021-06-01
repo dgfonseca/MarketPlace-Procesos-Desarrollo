@@ -3,14 +3,15 @@
   <div class="box">
     <div class="field column is-expanded">
       <div class="control has-icons-right">
-        <input class="input is-medium" type="text" placeholder="Buscar por nombre de la canasta" (input)="search()" id="search-bar">
+        <input (input)="search()" class="input is-medium" id="search-bar" placeholder="Buscar por nombre de la canasta"
+               type="text">
         <span class="icon is-small is-right">
           <fa-icon [icon]="faSearch"></fa-icon>
         </span>
       </div>
     </div>
     <div class="row">
-      <div class="is-vcentered p-4 element" *ngFor="let canasta of canastas">
+      <div *ngFor="let canasta of canastas" class="is-vcentered p-4 element">
         <div class="box">
           <div class="has-text-left is-size-3 columns">
             <div class="column">
@@ -20,18 +21,18 @@
               >{{canasta.nombre}}</a
               >
             </div>
-            <div class="column is-3" *ngIf="canasta.activado == true">
+            <div *ngIf="canasta.activado == true" class="column is-3">
               <button
-                class="button is-info is-medium is-fullwidth text-decoration-none"
                 (click)="cambiarActivado(canasta.id, canasta, canasta.activado)"
+                class="button is-info is-medium is-fullwidth text-decoration-none"
               >Deshabilitar
               </button
               >
             </div>
-            <div class="column is-3" *ngIf="canasta.activado == false">
+            <div *ngIf="canasta.activado == false" class="column is-3">
               <button
-                class="button is-info is-medium is-fullwidth"
                 (click)="cambiarActivado(canasta.id, canasta, canasta.activado)"
+                class="button is-info is-medium is-fullwidth"
               >Habilitar
               </button
               >

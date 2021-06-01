@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProductoCatalogoListComponent } from './producto-catalogo-list.component';
+import {ProductoCatalogoListComponent} from './producto-catalogo-list.component';
 
 describe('ProductoCatalogoListComponent', () => {
   let component: ProductoCatalogoListComponent;
@@ -8,9 +8,9 @@ describe('ProductoCatalogoListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductoCatalogoListComponent ]
+      declarations: [ProductoCatalogoListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

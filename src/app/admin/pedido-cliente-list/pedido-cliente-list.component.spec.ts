@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PedidoClienteListComponent } from './pedido-cliente-list.component';
+import {PedidoClienteListComponent} from './pedido-cliente-list.component';
 
 describe('PedidoClienteListComponent', () => {
   let component: PedidoClienteListComponent;
@@ -8,9 +8,9 @@ describe('PedidoClienteListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PedidoClienteListComponent ]
+      declarations: [PedidoClienteListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
