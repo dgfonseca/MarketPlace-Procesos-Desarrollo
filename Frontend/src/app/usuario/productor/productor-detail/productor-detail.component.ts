@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {ProductorService} from "../productor.service";
-import {Productor} from "../productor";
-import {ActivatedRoute} from "@angular/router";
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {ProductorService} from '../productor.service';
+import {Productor} from '../productor';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-productor-detail',
@@ -14,15 +14,15 @@ export class ProductorDetailComponent implements OnInit {
   faSearch = faSearch;
   productorService: ProductorService;
   productor: Productor;
-  route:ActivatedRoute
+  route: ActivatedRoute;
 
-  constructor(route: ActivatedRoute,productorService: ProductorService) {
+  constructor(route: ActivatedRoute, productorService: ProductorService) {
     this.route = route;
     this.productorService = productorService;
   }
 
   ngOnInit(): void {
-    this.productorService.getProductor(this.route.snapshot.params["id"]).subscribe(productor => this.productor = productor);
+    this.productorService.getProductor(this.route.snapshot.params['id']).subscribe(productor => this.productor = productor);
   }
 
 }

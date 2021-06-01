@@ -1,136 +1,136 @@
 <div class="column">
-    <h3 class="title">Formulario de postulación para Marketplace</h3>
-    <div class="box">
-      <form id="form" onsubmit="return false">
-        <div class="field">
-            <div class="control">
-              <input
-                class="input is-medium"
-                type="text"
-                name="nombreFinca"
-                placeholder="Nombre de la finca"
-                autofocus=""
-                required
-              />
-            </div>
-          </div>
-        <div class="field">
-          <div class="control">
-            <input
-              class="input is-medium"
-              type="text"
-              name="nombre"
-              placeholder="Nombre del contacto"
-              autofocus=""
-              required
-            />
-          </div>
+  <h3 class="title">Formulario de postulación para Marketplace</h3>
+  <div class="box">
+    <form id="form" onsubmit="return false">
+      <div class="field">
+        <div class="control">
+          <input
+            autofocus=""
+            class="input is-medium"
+            name="nombreFinca"
+            placeholder="Nombre de la finca"
+            required
+            type="text"
+          />
         </div>
-        <div class="field">
-            <div class="control">
-              <input
-                class="input is-medium"
-                type="email"
-                name="correo"
-                placeholder="Correo"
-                autofocus=""
-                required
-              />
-            </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            autofocus=""
+            class="input is-medium"
+            name="nombre"
+            placeholder="Nombre del contacto"
+            required
+            type="text"
+          />
         </div>
-        <div class="field columns mb-0 is-vcentered">
-          <div class="control column">
-            <input
-              class="input is-medium"
-              type="number"
-              name="celular"
-              min="0"
-              placeholder="Celular"
-              required
-            />
-          </div>
-          <div class="column">
-            <input
-              class="input is-medium"
-              type="number"
-              name="telefono"
-              min="0"
-              placeholder="Telefono"
-              required
-            />
-          </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            autofocus=""
+            class="input is-medium"
+            name="correo"
+            placeholder="Correo"
+            required
+            type="email"
+          />
         </div>
-        <div class="field">
-            <div class="control">
-              <input
-                class="input is-medium"
-                type="text"
-                name="productos"
-                placeholder="Productos que ofrece"
-                autofocus=""
-                required
-              />
-            </div>
+      </div>
+      <div class="field columns mb-0 is-vcentered">
+        <div class="control column">
+          <input
+            class="input is-medium"
+            min="0"
+            name="celular"
+            placeholder="Celular"
+            required
+            type="number"
+          />
         </div>
-        <div class="field">
-            <div class="control">
-              <input
-                class="input is-medium"
-                type="text"
-                name="cultivos"
-                placeholder="Tipo de cultivos"
-                autofocus=""
-                required
-              />
-            </div>
+        <div class="column">
+          <input
+            class="input is-medium"
+            min="0"
+            name="telefono"
+            placeholder="Telefono"
+            required
+            type="number"
+          />
         </div>
-        <div class="field">
-            <div class="control">
-              <input
-                class="input is-medium"
-                type="text"
-                name="procesos"
-                placeholder="Tipos de procesos"
-                autofocus=""
-                required
-              />
-            </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            autofocus=""
+            class="input is-medium"
+            name="productos"
+            placeholder="Productos que ofrece"
+            required
+            type="text"
+          />
         </div>
-        <div class="field columns mb-0 is-vcentered">
-            <div class="control column">
-              <input
-                class="input is-medium"
-                type="text"
-                name="vereda"
-                placeholder="Vereda"
-                required
-              />
-            </div>
-            <div class="column">
-              <input
-                class="input is-medium"
-                type="text"
-                name="municipio"
-                placeholder="Municipio"
-                required
-              />
-            </div>
-          </div>
-        <div class="columns">
-          <div class="column">
-            <a
-              href="/home/"
-              class="button is-danger is-medium is-fullwidth text-decoration-none"
-              id="cancelar"
-            >Cancelar</a
-            >
-          </div>
-          <div class="column">
-            <button class="button is-info is-medium is-fullwidth"  id="postularse" (click)="create()">
-              Postularse
-            </button>
-          </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            autofocus=""
+            class="input is-medium"
+            name="cultivos"
+            placeholder="Tipo de cultivos"
+            required
+            type="text"
+          />
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            autofocus=""
+            class="input is-medium"
+            name="procesos"
+            placeholder="Tipos de procesos"
+            required
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="field columns mb-0 is-vcentered">
+        <div class="control column">
+          <input
+            class="input is-medium"
+            name="vereda"
+            placeholder="Vereda"
+            required
+            type="text"
+          />
+        </div>
+        <div class="column">
+          <input
+            class="input is-medium"
+            name="municipio"
+            placeholder="Municipio"
+            required
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <a
+            class="button is-danger is-medium is-fullwidth text-decoration-none"
+            href="/home/"
+            id="cancelar"
+          >Cancelar</a
+          >
+        </div>
+        <div class="column">
+          <button (click)="create()" class="button is-info is-medium is-fullwidth" id="postularse">
+            Postularse
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
+</div>

@@ -50,7 +50,7 @@ export class ProductoCatalogoCreateComponent implements OnInit {
               }
             })
           }
-        }, error => alert("El producto del catálogo no pudo ser creado"));
+        }, error => alert(error.error.message));
       } else {
         alert("Hay campos que no tienen contenido, lo que impide la creación del producto");
       }

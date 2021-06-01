@@ -1,5 +1,4 @@
-import { NumberFormatStyle } from "@angular/common";
-import {Usuario} from "../cliente/usuario";
+import {Usuario} from '../cliente/usuario';
 
 export class ProductorPostulante extends Usuario {
   id: number;

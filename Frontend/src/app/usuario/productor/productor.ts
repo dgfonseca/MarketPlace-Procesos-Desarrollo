@@ -1,5 +1,5 @@
-import {Usuario} from "../cliente/usuario";
-import {Oferta} from "../../catalogo/oferta/oferta";
+import {Usuario} from '../cliente/usuario';
+import {Oferta} from '../../catalogo/oferta/oferta';
 
 export class Productor extends Usuario {
   id: number;

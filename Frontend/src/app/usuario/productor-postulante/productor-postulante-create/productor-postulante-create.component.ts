@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductorPostulanteService} from '../productor-postulante.service';
-import * as globals from '../../../globals';
 import {ProductorPostulante} from '../productor-postulante';
 
 @Component({
@@ -20,17 +19,17 @@ export class ProductorPostulanteCreateComponent implements OnInit {
   create() {
     if (confirm('Está seguro que quiere enviar su postulación?')) {
       const productorPostulante = new ProductorPostulante();
-      productorPostulante.nombreFinca = (<HTMLInputElement>document.getElementsByName("nombreFinca")[0]).value;
-      productorPostulante.nombre = (<HTMLInputElement>document.getElementsByName("nombre")[0]).value;
-      productorPostulante.correo = (<HTMLInputElement>document.getElementsByName("correo")[0]).value;
-      productorPostulante.celular = parseFloat((<HTMLInputElement>document.getElementsByName("celular")[0]).value);
-      productorPostulante.telefono = parseFloat((<HTMLInputElement>document.getElementsByName("telefono")[0]).value);
-      productorPostulante.municipio = (<HTMLInputElement>document.getElementsByName("municipio")[0]).value;
-      productorPostulante.productos = (<HTMLInputElement>document.getElementsByName("productos")[0]).value;
-      productorPostulante.cultivos = (<HTMLInputElement>document.getElementsByName("cultivos")[0]).value;
-      productorPostulante.procesos = (<HTMLInputElement>document.getElementsByName("procesos")[0]).value;
-      productorPostulante.vereda = (<HTMLInputElement>document.getElementsByName("vereda")[0]).value;
-      if(productorPostulante.celular<0||productorPostulante.telefono<0){
+      productorPostulante.nombreFinca = (<HTMLInputElement> document.getElementsByName('nombreFinca')[0]).value;
+      productorPostulante.nombre = (<HTMLInputElement> document.getElementsByName('nombre')[0]).value;
+      productorPostulante.correo = (<HTMLInputElement> document.getElementsByName('correo')[0]).value;
+      productorPostulante.celular = parseFloat((<HTMLInputElement> document.getElementsByName('celular')[0]).value);
+      productorPostulante.telefono = parseFloat((<HTMLInputElement> document.getElementsByName('telefono')[0]).value);
+      productorPostulante.municipio = (<HTMLInputElement> document.getElementsByName('municipio')[0]).value;
+      productorPostulante.productos = (<HTMLInputElement> document.getElementsByName('productos')[0]).value;
+      productorPostulante.cultivos = (<HTMLInputElement> document.getElementsByName('cultivos')[0]).value;
+      productorPostulante.procesos = (<HTMLInputElement> document.getElementsByName('procesos')[0]).value;
+      productorPostulante.vereda = (<HTMLInputElement> document.getElementsByName('vereda')[0]).value;
+      if (productorPostulante.celular < 0 || productorPostulante.telefono < 0) {
         alert('Hay campos que no tienen contenido, lo que impide la creación de la postulación');
       }
       if (productorPostulante.nombreFinca && productorPostulante.nombre && productorPostulante.correo && productorPostulante.celular && productorPostulante.telefono && productorPostulante.municipio && productorPostulante.productos && productorPostulante.cultivos && productorPostulante.procesos && productorPostulante.vereda) {

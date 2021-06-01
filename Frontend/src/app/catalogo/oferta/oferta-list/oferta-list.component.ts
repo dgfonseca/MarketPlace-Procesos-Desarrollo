@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {Component, OnInit} from '@angular/core';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-oferta-list',
@@ -10,7 +10,8 @@ export class OfertaListComponent implements OnInit {
 
   faSearch = faSearch;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

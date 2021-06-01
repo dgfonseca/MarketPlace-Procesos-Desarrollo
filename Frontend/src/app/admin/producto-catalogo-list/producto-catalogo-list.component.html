@@ -3,14 +3,15 @@
   <div class="box">
     <div class="field column is-expanded">
       <div class="control has-icons-right">
-        <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto" (input)="search()" id="search-bar">
+        <input (input)="search()" class="input is-medium" id="search-bar" placeholder="Buscar por nombre del producto"
+               type="text">
         <span class="icon is-small is-right">
           <fa-icon [icon]="faSearch"></fa-icon>
         </span>
       </div>
     </div>
     <div class="row">
-      <div class="is-vcentered p-4 element" *ngFor="let productoCatalogo of productosCatalogo">
+      <div *ngFor="let productoCatalogo of productosCatalogo" class="is-vcentered p-4 element">
         <div class="box">
           <div class="has-text-left is-size-3 columns">
             <div class="column">
@@ -27,26 +28,26 @@
               >Editar</a
               >
             </div>
-            <div class="column is-2" *ngIf="productoCatalogo.activado == true">
+            <div *ngIf="productoCatalogo.activado == true" class="column is-2">
               <button
-                class="button is-info is-medium is-fullwidth text-decoration-none"
                 (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
+                class="button is-info is-medium is-fullwidth text-decoration-none"
               >Deshabilitar
               </button
               >
             </div>
-            <div class="column is-2" *ngIf="productoCatalogo.activado == false">
+            <div *ngIf="productoCatalogo.activado == false" class="column is-2">
               <button
-                class="button is-info is-medium is-fullwidth"
                 (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
+                class="button is-info is-medium is-fullwidth"
               >Habilitar
               </button
               >
             </div>
             <div class="column is-2">
               <button
-                class="button is-danger is-medium is-fullwidth"
                 (click)="eliminar(productoCatalogo)"
+                class="button is-danger is-medium is-fullwidth"
               >Eliminar
               </button
               >

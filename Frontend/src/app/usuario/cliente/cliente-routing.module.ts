@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {ClienteCreateComponent} from "./cliente-create/cliente-create.component";
-import {ClienteDetailComponent} from "./cliente-detail/cliente-detail.component";
-import {ClienteListComponent} from "./cliente-list/cliente-list.component";
-import {ClienteUpdateComponent} from "./cliente-update/cliente-update.component";
-import {PedidoClienteListComponent} from "./pedido-cliente-list/pedido-cliente-list.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ClienteCreateComponent} from './cliente-create/cliente-create.component';
+import {ClienteDetailComponent} from './cliente-detail/cliente-detail.component';
+import {ClienteListComponent} from './cliente-list/cliente-list.component';
+import {ClienteUpdateComponent} from './cliente-update/cliente-update.component';
+import {PedidoClienteListComponent} from './pedido-cliente-list/pedido-cliente-list.component';
 
 const routes: Routes = [
   {
@@ -33,4 +33,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ClienteRoutingModule { }
+export class ClienteRoutingModule {
+}

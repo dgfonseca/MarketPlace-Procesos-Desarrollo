@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CanastaListComponent } from './canasta-list.component';
+import {CanastaListComponent} from './canasta-list.component';
 
 describe('CanastaListComponent', () => {
   let component: CanastaListComponent;
@@ -8,9 +8,9 @@ describe('CanastaListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CanastaListComponent ]
+      declarations: [CanastaListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

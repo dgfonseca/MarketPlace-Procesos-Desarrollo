@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {CanastaService} from "../../catalogo/canasta/canasta.service";
-import {Canasta} from "../../catalogo/canasta/canasta";
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {CanastaService} from '../../catalogo/canasta/canasta.service';
+import {Canasta} from '../../catalogo/canasta/canasta';
 
 @Component({
   selector: 'app-canasta-list',
@@ -40,7 +40,7 @@ export class CanastaListComponent implements OnInit {
     let input, filter, box, a, i, txtValue;
     input = document.getElementById('search-bar');
     if (input != null) {
-      filter = (<HTMLInputElement>input).value.toUpperCase();
+      filter = (<HTMLInputElement> input).value.toUpperCase();
       box = document.getElementsByClassName('element');
       console.log(box);
       for (i = 0; i < box.length; i++) {
@@ -48,27 +48,27 @@ export class CanastaListComponent implements OnInit {
         txtValue = a.textContent || a.innerText;
         console.log(txtValue);
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          (<HTMLElement>box[i]).style.display = '';
+          (<HTMLElement> box[i]).style.display = '';
         } else {
-          (<HTMLElement>box[i]).style.display = 'none';
+          (<HTMLElement> box[i]).style.display = 'none';
         }
       }
     }
   }
 
   cambiarActivado(id: number, canasta: Canasta, estado: boolean) {
-    if (confirm("Está seguro que quiere desactivar esta canasta?")) {
+    if (confirm('Está seguro que quiere desactivar esta canasta?')) {
       let actualizar = new Canasta();
       actualizar.activado = !estado;
       this.canastaService.updateCanasta(id, actualizar).subscribe(resp => {
         if (resp.status === 200) {
-          alert("La canasta del catálogo fue actualizada exitosamente");
+          alert('La canasta del catálogo fue actualizada exitosamente');
           canasta.activado = !estado;
         } else {
-          alert("La canasta del catálogo no pudo ser actualizada");
+          alert('La canasta del catálogo no pudo ser actualizada');
         }
       }, error => {
-        alert("La canasta del catálogo no pudo ser actualizado");
+        alert(error.error.message);
       });
     }
   }

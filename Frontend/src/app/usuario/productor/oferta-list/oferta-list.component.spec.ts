@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OfertaListComponent } from './oferta-list.component';
+import {OfertaListComponent} from './oferta-list.component';
 
 describe('OfertaListComponent', () => {
   let component: OfertaListComponent;
@@ -8,9 +8,9 @@ describe('OfertaListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OfertaListComponent ]
+      declarations: [OfertaListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
