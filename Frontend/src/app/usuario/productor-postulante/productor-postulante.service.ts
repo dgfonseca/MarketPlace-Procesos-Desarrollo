@@ -1,0 +1,22 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {ProductorPostulante} from "./productor-postulante";
+import * as globals from "../../globals";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductorPostulanteService {
+
+  constructor(private http: HttpClient) {
+  }
+
+  getProductorPostulante(id: number): Observable<ProductorPostulante> {
+    return this.http.get<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE + id)
+  }
+
+  getProductoresPostulantes(): Observable<ProductorPostulante[]> {
+    return this.http.get<ProductorPostulante[]>(globals.API_IP + globals.PRODUCTOR_POSTULANTE)
+  } 
+}

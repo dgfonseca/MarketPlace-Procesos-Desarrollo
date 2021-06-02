@@ -16,6 +16,7 @@ export const CANTIDAD_PRODUCTO = "cantidad-producto/";
 export const OFERTA = "oferta/";
 export const PEDIDO_PRODUCTOR = "pedido-productor/";
 export const PRODUCTOR = "productor/";
+export const PRODUCTOR_POSTULANTE = "productor-postulante/";
 export const IMAGE_API = "https://hosting-marketplace.herokuapp.com/";
 export const IMAGES = "api/images/";
 export const IMAGE = "api/image/";
