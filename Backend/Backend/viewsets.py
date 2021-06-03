@@ -82,12 +82,7 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
                         if 'nombre' in request.data:
                             producto = ProductoCatalogo.objects.filter(nombre=request.data["nombre"]).first()
                             if producto:
-                                print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-                                print(kwargs.get('pk'))
-                                print(producto.id)
                                 if str(producto.id) != str(kwargs.get('pk')):
-
-
                                     return Response({"message": "Producto con ese nombre ya existe"},
                                                 status=status.HTTP_409_CONFLICT)
                                 else:
@@ -115,6 +110,21 @@ class ProductoCatalogoViewset(viewsets.ModelViewSet):
 class CanastaViewset(viewsets.ModelViewSet):
     queryset = models.Canasta.objects.all()
     serializer_class = serializers.CanastaSerializer
+    @csrf_exempt
+    def update(self, request, *args, **kwargs):
+        try:
+            canasta = models.Canasta.objects.get(id=kwargs["pk"])
+            canasta_serializer = serializers.CanastaSerializer(canasta,request.data,partial=True)
+            if canasta_serializer.is_valid():
+                canasta_serializer.save()
+                return Response(canasta_serializer.data,status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "No se pudo actualizar el estado de la canasta, por favor verifique los valores de la peticion"},
+                                status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            print(e)
+            return Response({"message":"No se pudo actualizar el estado de la canasta"}, status=status.HTTP_409_CONFLICT)
+
 
 
 class CantidadProductoCatalogoViewset(viewsets.ModelViewSet):

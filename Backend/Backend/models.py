@@ -34,6 +34,7 @@ class ProductoCatalogo(models.Model):
 
 class Canasta(models.Model):
     nombre = models.CharField(max_length=255, blank=False, null=False)
+    activado = models.BooleanField(default=False)
 
 
 class CantidadProductoCatalogo(models.Model):
