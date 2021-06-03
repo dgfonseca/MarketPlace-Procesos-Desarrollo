@@ -284,4 +284,60 @@ class GM_10_Tests(TestCase):
 class GM_56_Tests(TestCase):
 
     def test_postularse(self):
-        return
+        response = self.client.post('/api/postulacion/', json.dumps(
+            {
+                "":"",
+                "":"",
+                "":"",
+                "":"",
+
+            }
+        ), content_type='application/json')
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data["nombre"], "David")
+        self.assertEqual(http_response, 200)
+
+    def test_postularse_campos_faltantes(self):
+        response=self.client.post('/api/postulacion/',json.dumps(
+            {
+                "":"",
+                "":"",
+                "":"",
+                "":"",
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(http_response,400)
+        self.assertEqual(current_data["message"], "Campos faltantes")
+
+    def test_postularse_campos_invalidos(self):
+        response = self.client.post('/api/postulacion/',json.dumps(
+            {
+                "":False,
+                "":1234,
+                "":"DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+                "":"",
+                "":"",
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(http_response,400)
+        self.assertEqual(current_data["message"],"Campos invalidos")
+
+        response = self.client.post('/api/postulacion/', json.dumps(
+            {
+                "": "",
+                "": "",
+                "": "DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+                "": "DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+                "": "DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(http_response, 400)
+        self.assertEqual(current_data["message"], "Campos invalidos")
