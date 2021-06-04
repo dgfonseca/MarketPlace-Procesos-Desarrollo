@@ -12,19 +12,6 @@ export class ProductorPostulanteService {
   constructor(private http: HttpClient) {
   }
 
-  getProductor(id: number): Observable<ProductorPostulante> {
-    return this.http.get<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE + id);
-  }
-
-  getProductores(): Observable<ProductorPostulante[]> {
-    return this.http.get<ProductorPostulante[]>(globals.API_IP + globals.PRODUCTOR_POSTULANTE);
-  }
-
-  createProductor(productorPostulante: ProductorPostulante) {
-    return this.http.post<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE, productorPostulante, {observe: 'response'});
-  }
-
-
   getProductorPostulante(id: number): Observable<ProductorPostulante> {
     return this.http.get<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE + id)
   }
@@ -32,4 +19,9 @@ export class ProductorPostulanteService {
   getProductoresPostulantes(): Observable<ProductorPostulante[]> {
     return this.http.get<ProductorPostulante[]>(globals.API_IP + globals.PRODUCTOR_POSTULANTE)
   }
+
+  createProductor(productorPostulante: ProductorPostulante) {
+    return this.http.post<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE, productorPostulante, {observe: 'response'});
+  }
+
 }

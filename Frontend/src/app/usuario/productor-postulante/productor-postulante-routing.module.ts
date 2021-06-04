@@ -6,16 +6,16 @@ import {ProductorPostulanteDetailComponent} from "./productor-postulante-detail/
 
 const routes: Routes = [
   {
-    path: 'create',
-    component: ProductorPostulanteCreateComponent
-  },
-  {
     path: 'list',
     component: ProductorPostulanteListComponent
   },
   {
     path: 'detail/:id',
     component: ProductorPostulanteDetailComponent
+  },
+  {
+    path: 'create',
+    component: ProductorPostulanteCreateComponent
   }
 ];
 

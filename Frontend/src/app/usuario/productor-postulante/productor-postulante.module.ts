@@ -5,12 +5,13 @@ import {ProductorPostulanteRoutingModule} from './productor-postulante-routing.m
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { ProductorPostulanteCreateComponent } from "./productor-postulante-create/productor-postulante-create.component";
 import { ProductorPostulanteListComponent } from "./productor-postulante-list/productor-postulante-list.component";
+import { ProductorPostulanteDetailComponent } from "./productor-postulante-detail/productor-postulante-detail.component";
 
 @NgModule({
   declarations: [
+    ProductorPostulanteListComponent,
     ProductorPostulanteCreateComponent,
-    ProductorPostulanteListComponent
-
+    ProductorPostulanteDetailComponent
   ],
   imports: [
     CommonModule,
