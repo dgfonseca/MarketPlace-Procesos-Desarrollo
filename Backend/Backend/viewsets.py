@@ -1,5 +1,6 @@
 from django.db.models import Max, Min, Avg
 from rest_framework import viewsets, generics
+from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -195,7 +196,13 @@ class OfertaDeProductorViewset(generics.ListAPIView):
             queryset = queryset.filter(productor=id)
         return queryset
 
+class ProductorPostulanteViewset(APIView):
 
+    def get(self, request):
+        productores = models.ProductorPostulante.objects.all()
+        serializer = serializers.ProductorPostulanteSerializer(productores, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
 def update_producto_catalogo(request, **kwargs):
     if request.method == 'PUT':
         producto = ProductoCatalogo.objects.get(pk=kwargs.get('pk'))

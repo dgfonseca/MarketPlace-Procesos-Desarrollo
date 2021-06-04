@@ -25,5 +25,6 @@ urlpatterns = [
          name="ProductoCatalogoViewset"),
     path('api/catalogo/<int:pk>', viewsets.CanastaViewset.as_view({'put':'update'}), name="CatalogoViewset"),
     path('api/productorOfertas/<int:id>', viewsets.OfertaDeProductorViewset.as_view(), name="OfertaDeProductorViewset"),
-    path('api/producto/<int:pk>', viewsets.ProductoViewset.as_view({'get': 'retrieve'}), name="ProductoViewset")
+    path('api/producto/<int:pk>', viewsets.ProductoViewset.as_view({'get': 'retrieve'}), name="ProductoViewset"),
+    path('api/productores_postulantes', viewsets.ProductorPostulanteViewset.as_view(), name="ProductoresPostulantesViewSet")
 ]
