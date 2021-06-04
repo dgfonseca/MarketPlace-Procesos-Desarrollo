@@ -364,7 +364,7 @@ class GM_57_Tests(TestCase):
                 municipio = "municipio" + str(i)
             )
             productores.append(productor)
-        response = self.client.get('/api/productor-postulante')
+        response = self.client.get('/api/productor-postulante/')
         data = json.loads(response.content)
         self.assertEqual(len(data), len(productores))
 
@@ -380,7 +380,7 @@ class GM_56_Tests(TestCase):
         response = self.client.post('/api/productor-postulante/', json.dumps(
             {
                 "nombreFinca": "shdfjahsfkj",
-                "nombre": "aklsdfhjlsdfhlk",
+                "nombre": "David",
                 "correo": "dg.fonseca@uniandes.edu.co",
                 "celular": "123123",
                 "telefono": "123123",
