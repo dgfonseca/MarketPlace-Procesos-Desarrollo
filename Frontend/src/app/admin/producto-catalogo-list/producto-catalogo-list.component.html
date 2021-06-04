@@ -1,10 +1,18 @@
 <h1 class="title">Lista de productos del catalogo</h1>
 <div class="column is-12 is-offset-0">
   <div class="box">
+    <div class="field column is-expanded">
+      <div class="control has-icons-right">
+        <input class="input is-medium" type="text" placeholder="Buscar por nombre del producto" (input)="search()" id="search-bar">
+        <span class="icon is-small is-right">
+          <fa-icon [icon]="faSearch"></fa-icon>
+        </span>
+      </div>
+    </div>
     <div class="row">
-      <div class="col-6 is-vcentered p-4" *ngFor="let productoCatalogo of productosCatalogo">
+      <div class="is-vcentered p-4 element" *ngFor="let productoCatalogo of productosCatalogo">
         <div class="box">
-          <div class="has-text-centered is-size-3 columns">
+          <div class="has-text-left is-size-3 columns">
             <div class="column">
               <a
                 class="text-decoration-none"
@@ -12,16 +20,14 @@
               >{{productoCatalogo.nombre}}</a
               >
             </div>
-          </div>
-          <div class="columns m-0">
-            <div class="column">
+            <div class="column is-2">
               <a
                 class="button is-info is-medium is-fullwidth text-decoration-none"
-                href="/catalogo/producto-catalogo/update/{{productoCatalogo.id}}"
+                href="/catalogo/produc  to-catalogo/update/{{productoCatalogo.id}}"
               >Editar</a
               >
             </div>
-            <div class="column" *ngIf="productoCatalogo.activado == true">
+            <div class="column is-2" *ngIf="productoCatalogo.activado == true">
               <button
                 class="button is-info is-medium is-fullwidth text-decoration-none"
                 (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
@@ -29,7 +35,7 @@
               </button
               >
             </div>
-            <div class="column" *ngIf="productoCatalogo.activado == false">
+            <div class="column is-2" *ngIf="productoCatalogo.activado == false">
               <button
                 class="button is-info is-medium is-fullwidth"
                 (click)="cambiarActivado(productoCatalogo.id, productoCatalogo, productoCatalogo.activado)"
@@ -37,14 +43,14 @@
               </button
               >
             </div>
-          </div>
-          <div class="column">
-            <button
-              class="button is-danger is-medium is-fullwidth"
-              (click)="eliminar(productoCatalogo)"
-            >Eliminar
-            </button
-            >
+            <div class="column is-2">
+              <button
+                class="button is-danger is-medium is-fullwidth"
+                (click)="eliminar(productoCatalogo)"
+              >Eliminar
+              </button
+              >
+            </div>
           </div>
         </div>
       </div>
