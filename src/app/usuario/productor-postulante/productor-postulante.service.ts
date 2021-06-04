@@ -13,12 +13,12 @@ export class ProductorPostulanteService {
   }
 
   getProductorPostulante(id: number): Observable<ProductorPostulante> {
-    return this.http.get<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE + id)
+    return this.http.get<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE + id+ "/")
   }
 
   getProductoresPostulantes(): Observable<ProductorPostulante[]> {
     return this.http.get<ProductorPostulante[]>(globals.API_IP + globals.PRODUCTOR_POSTULANTE)
-  } 
+  }
 
   createProductor(productorPostulante: ProductorPostulante) {
     return this.http.post<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE, productorPostulante, {observe: 'response'});
