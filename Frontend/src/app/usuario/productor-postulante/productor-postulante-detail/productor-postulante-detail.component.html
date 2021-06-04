@@ -1,0 +1,45 @@
+<h1 class="title">Perfil del postulante {{productorPostulante.nombreFinca}}</h1>
+<div class="column is-12 is-offset-0">
+  <div class="box">
+    <div class="columns">
+      <div class="column">
+        <ul>
+          <li class="is-size-2">
+            Nombre de contacto:{{productorPostulante.nombre}}
+          </li>
+          <li class="is-size-2">
+            Correo:{{productorPostulante.correo}}
+          </li>
+          <li class="is-size-2">
+            Número de celular:{{productorPostulante.celular}}
+          </li>
+          <li class="is-size-2">
+            Número de teléfono:{{productorPostulante.telefono}}
+          </li>
+          <li class="is-size-2">
+            Localización:{{productorPostulante.vereda}}, {{productorPostulante.municipio}}
+          </li>
+          <li class="is-size-2">
+            Descripción productos que cultivan:{{productorPostulante.productos}}
+          </li>
+          <li class="is-size-2">
+            Descripción cultivos que tienen:{{productorPostulante.cultivos}}
+          </li>
+          <li class="is-size-2">
+            Descripción procesos utilizados:{{productorPostulante.procesos}}
+          </li>
+        </ul>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <a
+            href="/usuario/productor-postulante/list"
+            class="button is-danger is-medium is-fullwidth text-decoration-none"
+            id="cancelar"
+          >Cancelar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h1 class="title">Lista de productores postulantes</h1>
+<div class="column is-12 is-offset-0">
+  <div class="box">
+    <div class="row">
+      <div class="col-6 is-vcentered p-4" *ngFor="let productorPostulante of productoresPostulante">
+        <div class="box">
+          <div class="has-text-centered is-size-3 columns">
+            <div class="column">
+              <a class="text-decoration-none" href="/usuario/productor-postulante/{{productorPostulante.id}}">
+                {{productorPostulante.nombreFinca}}
+              </a>
+            </div>
+          </div>
+          <div class="columns m-0">
+            <div class="column">
+              <a class="button is-info is-medium is-fullwidth text-decoration-none" href="/usuario/productor-postulante/{{productorPostulante.id}}">
+                Descripción
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
