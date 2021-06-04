@@ -35,7 +35,7 @@ export class ProductorPostulanteCreateComponent implements OnInit {
       if (productorPostulante.nombreFinca && productorPostulante.nombre && productorPostulante.correo && productorPostulante.celular && productorPostulante.telefono && productorPostulante.municipio && productorPostulante.productos && productorPostulante.cultivos && productorPostulante.procesos && productorPostulante.vereda) {
         console.log(productorPostulante);
         this.productorPostulanteService.createProductor(productorPostulante).subscribe(resp => {
-          if (resp.status === 201) {
+          if (resp.status === 200) {
             alert('La postulación fue creada exitosamente');
             window.location.href = '/home';
           } else {
