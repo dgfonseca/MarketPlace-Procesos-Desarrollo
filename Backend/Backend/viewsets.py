@@ -202,6 +202,14 @@ class ProductorPostulanteViewset(APIView):
         productores = models.ProductorPostulante.objects.all()
         serializer = serializers.ProductorPostulanteSerializer(productores, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = serializers.ProductorPostulanteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_200_OK)
+        else :
+            return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
         
 def update_producto_catalogo(request, **kwargs):
     if request.method == 'PUT':
