@@ -4,6 +4,7 @@ from .models import ProductoCatalogo
 from .models import ProductorPostulante
 import json
 
+
 class GM71Tests(TestCase):
     def test_delete_producto_catalogo(self):
         request_post_producto_catalogo = self.client.post('/api/producto-catalogo/', json.dumps(
@@ -15,8 +16,8 @@ class GM71Tests(TestCase):
                 "activado": False
             }
         ), content_type="application/json")
-        id_producto_catalogo =json.loads(request_post_producto_catalogo.content)["id"]
-        request_delete = self.client.delete('/api/producto-catalogo/' + str(id_producto_catalogo)+'/')
+        id_producto_catalogo = json.loads(request_post_producto_catalogo.content)["id"]
+        request_delete = self.client.delete('/api/producto-catalogo/' + str(id_producto_catalogo) + '/')
         self.assertEqual(request_delete.status_code, 204)
 
         # test que no elimina correctamente dado que hay ofertas del producto
@@ -29,24 +30,27 @@ class GM71Tests(TestCase):
                 "activado": False
             }
         ), content_type="application/json")
-        id_producto_catalogo =json.loads(request_post_producto_catalogo.content)["id"]
+        id_producto_catalogo = json.loads(request_post_producto_catalogo.content)["id"]
         request_post_producto = self.client.post('/api/producto/', json.dumps(
             {
-                    "precioPorUnidad":"23.3",
-                    "cantidadDisponible":"20",
-                    "productoCatalogo": id_producto_catalogo
+                "precioPorUnidad": "23.3",
+                "cantidadDisponible": "20",
+                "productoCatalogo": id_producto_catalogo
             }
         ), content_type="application/json")
-        request_delete = self.client.delete('/api/producto-catalogo/' + str(id_producto_catalogo)+'/')
+        request_delete = self.client.delete('/api/producto-catalogo/' + str(id_producto_catalogo) + '/')
         self.assertEqual(request_delete.status_code, 406)
+
 
 class GM_09_Tests(TestCase):
 
     def test_put_producto_catalogo_nombre_existe(self):
-        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
-        producto2 = ProductoCatalogo.objects.create(nombre="Producto 2", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
+        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test",
+                                                   unidad="Libras", activado=False)
+        producto2 = ProductoCatalogo.objects.create(nombre="Producto 2", precioPorUnidad=1500, fotoProducto="Foto.test",
+                                                    unidad="Libras", activado=False)
 
-        response = self.client.put('/api/producto-catalogo/'+str(producto.id)+'/', json.dumps(
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
             {
                 "nombre": "Producto 2",
                 "precioPorUnidad": 1500,
@@ -60,6 +64,7 @@ class GM_09_Tests(TestCase):
         http_response = response.status_code
         self.assertEqual(current_data['message'], 'Producto con ese nombre ya existe')
         self.assertEqual(http_response, 409)
+
     def test_post_producto_catalogo(self):
         response = self.client.post('/api/producto-catalogo/', json.dumps(
             {
@@ -123,7 +128,7 @@ class GM_09_Tests(TestCase):
         ), content_type="application/json")
         current_data = json.loads(response.content)
         http_response = response.status_code
-        self.assertEqual(current_data["message"],"Tiene que enviar un nombre")
+        self.assertEqual(current_data["message"], "Tiene que enviar un nombre")
         self.assertEqual(http_response, 409)
 
         response = self.client.post('/api/producto-catalogo/', json.dumps(
@@ -141,8 +146,9 @@ class GM_09_Tests(TestCase):
         self.assertEqual(http_response, 203)
 
     def test_put_producto_catalogo(self):
-        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
-        response = self.client.put('/api/producto-catalogo/'+str(producto.id)+'/', json.dumps(
+        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test",
+                                                   unidad="Libras", activado=False)
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
             {
                 "nombre": "Modificado",
                 "precioPorUnidad": 2000,
@@ -170,9 +176,9 @@ class GM_09_Tests(TestCase):
         self.assertEqual(current_data["nombre"], "Producto 1")
         self.assertEqual(http_response, 200)
 
-
     def test_put_precio_producto_catalogo(self):
-        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
+        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test",
+                                                   unidad="Libras", activado=False)
         response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
             {
                 "precioPorUnidad": -2000,
@@ -213,12 +219,11 @@ class GM_09_Tests(TestCase):
         self.assertEqual(current_data["message"], "El precio debe ser un numero")
         self.assertEqual(http_response, 406)
 
-
-
     def test_put_producto_catalogo_campos_faltantes_incorrectos(self):
-        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test", unidad="Libras", activado=False)
+        producto = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test",
+                                                   unidad="Libras", activado=False)
 
-        response = self.client.put('/api/producto-catalogo/'+str(producto.id)+'/', json.dumps(
+        response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
             {
                 "precioPorUnidad": 1500,
                 "fotoProducto": "Fotoasdsad",
@@ -228,7 +233,7 @@ class GM_09_Tests(TestCase):
         ), content_type="application/json")
         current_data = json.loads(response.content)
         http_response = response.status_code
-        self.assertEqual(current_data["nombre"],"Producto 1")
+        self.assertEqual(current_data["nombre"], "Producto 1")
         self.assertEqual(http_response, 200)
 
         response = self.client.put('/api/producto-catalogo/' + str(producto.id) + '/', json.dumps(
@@ -261,21 +266,80 @@ class GM_09_Tests(TestCase):
         self.assertEqual(producto2.fotoProducto, "Foto2")
         self.assertEqual(http_response, 406)
 
-from .models import Producto
+
+from .models import Producto, Canasta, CantidadProductoCatalogo
+
+
+class GM_72_Tests(TestCase):
+
+    def test_inhabilitar_canasta(self):
+        canasta = Canasta.objects.create(nombre="Canasta 1", activado=True)
+        response = self.client.put('/api/canasta/' + str(canasta.id) + '/', json.dumps({
+            "activado": False
+        }
+        ), content_type="application/json")
+        http_response = response.status_code
+        current_data = json.loads(response.content)
+        self.assertEqual(http_response, 200)
+        self.assertEqual(current_data["activado"], False)
+
+    def test_habilitar_canasta(self):
+        canasta = Canasta.objects.create(nombre="Canasta 1", activado=False)
+        response = self.client.put('/api/canasta/' + str(canasta.id) + '/', json.dumps({
+            "activado": True
+        }
+        ), content_type="application/json")
+        http_response = response.status_code
+        current_data = json.loads(response.content)
+        self.assertEqual(http_response, 200)
+        self.assertEqual(current_data["activado"], True)
+
+        response = self.client.put('/api/canasta/' + str(canasta.id) + '/', json.dumps({
+            "activado": "Holiwi"
+        }
+        ), content_type="application/json")
+        http_response = response.status_code
+        current_data = json.loads(response.content)
+        self.assertEqual(http_response,400)
+        self.assertEqual(current_data["message"],"No se pudo actualizar el estado de la canasta, por favor verifique los valores de la peticion")
+
+
+    # def test_agregar_canasta(self):
+    #     producto1 = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500, fotoProducto="Foto.test",
+    #                                                 unidad="Libras", activado=True)
+    #     producto2 = ProductoCatalogo.objects.create(nombre="Producto 2", precioPorUnidad=1500, fotoProducto="Foto.test",
+    #                                                 unidad="Libras", activado=True)
+    #     response = self.client.post('/api/canasta/', json.dumps({
+    #         "nombre": "Canasta 1",
+    #         "activado": True,
+    #         "productos": [{
+    #             "producto": producto1.id,
+    #             "cantidad": 35
+    #         }, {
+    #             "producto": producto2.id,
+    #             "cantidad": 35
+    #         }],
+    #     }), content_type="application/json")
+    #     http_response = response.status_code
+    #     current_data = json.loads(response.data)
+    #     self.assertEqual(http_response, 200)
+    #     self.assertEqual(current_data["nombre"], "Canasta 1")
+    #     self.assertEqual(current_data["producto"].length, 2)
+
 
 class GM_10_Tests(TestCase):
 
     def test_estadisticas_producto(self):
         producto_catalogo = ProductoCatalogo.objects.create(nombre="Producto 1", precioPorUnidad=1500,
                                                             fotoProducto="Foto.test", unidad="Libras", activado=False)
-        response1=self.client.post('/api/producto/', json.dumps(
+        response1 = self.client.post('/api/producto/', json.dumps(
             {
                 "precioPorUnidad": 1500,
                 "cantidadDisponible": 123321,
                 "productoCatalogo": producto_catalogo.id
             }
         ), content_type="application/json")
-        response = self.client.get('/api/producto/'+str(producto_catalogo.id)+'/')
+        response = self.client.get('/api/producto/' + str(producto_catalogo.id) + '/')
         current_data = json.loads(response.content)
         http_response = response.status_code
         self.assertEqual(current_data["max"], 1500)
@@ -308,4 +372,65 @@ class GM_57_Tests(TestCase):
 
         
         
+
+class GM_56_Tests(TestCase):
+
+    def test_postularse(self):
+        response = self.client.post('/api/postulacion/', json.dumps(
+            {
+                "":"",
+                "":"",
+                "":"",
+                "":"",
+
+            }
+        ), content_type='application/json')
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(current_data["nombre"], "David")
+        self.assertEqual(http_response, 200)
+
+    def test_postularse_campos_faltantes(self):
+        response=self.client.post('/api/postulacion/',json.dumps(
+            {
+                "":"",
+                "":"",
+                "":"",
+                "":"",
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(http_response,400)
+        self.assertEqual(current_data["message"], "Campos faltantes")
+
+    def test_postularse_campos_invalidos(self):
+        response = self.client.post('/api/postulacion/',json.dumps(
+            {
+                "":False,
+                "":1234,
+                "":"DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+                "":"",
+                "":"",
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(http_response,400)
+        self.assertEqual(current_data["message"],"Campos invalidos")
+
+        response = self.client.post('/api/postulacion/', json.dumps(
+            {
+                "": "",
+                "": "",
+                "": "DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+                "": "DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+                "": "DXMXFrMxZhgUUWLr2NkKENYyQ2HetvZrB7bgatWTuvXr3u98hV8bMnRpZm8B23JvnZVzpenWU8HWSnHExmd3W6zzQiQtSP3NBD5nTrHEi7vLMSJSztAcJYYZmEjq8RdNeZJ8fpr6ZrtYL6aaMpuN3VHAiQSnTqAyPgkESRW44XF6tLhvEjrLf94TH2Gj2G4cngi5L9v5hFXv3dRF465rxexUEAwC4kWmMkvSyGRzCEv8NWrbMEkeLyz3ES5XTvJ5j9q2jrt25MiNXh76PCSv6e294tYTF4QFRKc4MVqVE8AGWZaZhN8Q28q6f9mYN4QqPyLWHvyWDbhKvyc6KVBwSWtwqLq52uW2xXQRD4R7RMpKSF6aXA5ym6N6YCdLBc4guBYHSKWFEB6cU2qfYN7f2SXEHc6EmGWiyMr4WZudwnVbJxkuDG5fXfLTQYDuXryna3NkmMfPSdT8ZYPnpLhZxN4K44B3bkULmJduCqtYnj9UwG89bwy8jXFUyJBt4DkKdhrV33MqHdFVVu4pTmJZBLB9p26MmWe9uyVjYtikmTPy9KhyFTnmMyUUiSNqpVmbNipPutKSG6EtdwuLUTJmKa54qAWvTr7HaeYByF2uD5ncVNDnmykRiMXFwfjGABGHMfTWNB8kuiqr5FhYEFMudvBNkjktw7QFty5WeHGw3VVNq7yr9wu3zrZECRexiT4dnGJraDWe77HaugtBEYcG5rNPnTxpiAuxeuEVTn7iN6MgxpuvBJ8g2VW6yxRKU57BAU22J4ABbMPgtNyu5BHTaTS3rAnuqSv2FyA2PnT9wKzm72itPGfS4xMVYjTgm7di4K5bG4egEninBFcuSiGabSmKbxjJxDL9pWmnLmNqa9WryFhcVeqCfraUFwZEzbTJSzbPiLVWxw8NKFXDJDaxfhWZHVTNuyrAH6cDf8KqZ8nDN5enZgVugre9XgajDx4iJZQJ7EqJ5euDJ43r5Lq5NvGapmhDuJt2X6XRrtuAasdasjsajfsjfslkjfklsdjfkljasfeionsnfsahfeioankdsfnjoenaskldnfeafnioasdbnfbsfbeibsdbnfeobsondfnskjdnfjhawuhnfdkslhfuewahidhfuahsinjfhsuhfhjfalksdjlkfnafoiwheaiodnfhidjfieikdksowodfhapwpajdfhiuhauhdfn",
+
+            }
+        ), content_type="application/json")
+        current_data = json.loads(response.content)
+        http_response = response.status_code
+        self.assertEqual(http_response, 400)
+        self.assertEqual(current_data["message"], "Campos invalidos")
 

@@ -4,6 +4,7 @@ import {Oferta} from "./catalogo/oferta/oferta";
 import {CantidadProducto} from "./catalogo/cantidad-producto";
 import {Canasta} from "./catalogo/canasta/canasta";
 import {CantidadProductoCatalogo} from "./catalogo/cantidad-producto-catalogo";
+import { ProductorPostulante } from "./usuario/productor-postulante/productor-postulante";
 
 export const API_IP = "https://marketplace-procesos-back.herokuapp.com/api/";
 export const CLIENTE = "cliente/";
@@ -20,6 +21,7 @@ export const PRODUCTOR_POSTULANTE = "productor-postulante/";
 export const IMAGE_API = "https://hosting-marketplace.herokuapp.com/";
 export const IMAGES = "api/images/";
 export const IMAGE = "api/image/";
+export const PRODUCTOR_POSTULANTE = "productor-postulante/";
 
 
 export function anadirAOferta(productoCatalogo: ProductoCatalogo) {

@@ -19,4 +19,9 @@ export class ProductorPostulanteService {
   getProductoresPostulantes(): Observable<ProductorPostulante[]> {
     return this.http.get<ProductorPostulante[]>(globals.API_IP + globals.PRODUCTOR_POSTULANTE)
   } 
+
+  createProductor(productorPostulante: ProductorPostulante) {
+    return this.http.post<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE, productorPostulante, {observe: 'response'});
+  }
+
 }
