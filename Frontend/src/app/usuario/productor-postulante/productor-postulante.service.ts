@@ -25,4 +25,11 @@ export class ProductorPostulanteService {
   }
 
 
+  getProductorPostulante(id: number): Observable<ProductorPostulante> {
+    return this.http.get<ProductorPostulante>(globals.API_IP + globals.PRODUCTOR_POSTULANTE + id)
+  }
+
+  getProductoresPostulantes(): Observable<ProductorPostulante[]> {
+    return this.http.get<ProductorPostulante[]>(globals.API_IP + globals.PRODUCTOR_POSTULANTE)
+  }
 }
