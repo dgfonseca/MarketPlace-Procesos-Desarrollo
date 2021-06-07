@@ -15,6 +15,8 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
   productoCatalogoService: ProductoCatalogoService;
   productoCatalogo: ProductoCatalogo;
   fileUpload: Boolean;
+  file: File | null = null;
+  extension: String | null = null;
 
   constructor(route: ActivatedRoute, productoCatalogoService: ProductoCatalogoService) {
     this.productoCatalogoService = productoCatalogoService;
@@ -29,26 +31,14 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
 
   modificar() {
     if (confirm("Está seguro que quiere modificar el producto del catalogo?")) {
-      let file: File | null = null;
-      let extension: String | null = null;
       this.productoCatalogo.nombre = (<HTMLInputElement>document.getElementsByName("nombre")[0]).value;
-      if (this.fileUpload) {
-        let fileElement = <HTMLInputElement>document.getElementById("file")
-        if (fileElement.files != null) {
-          file = fileElement.files[0];
-          let split = file.name.split(".");
-          extension = split[split.length - 1];
-          this.productoCatalogo.fotoProducto = globals.IMAGE_API + "images/" + this.productoCatalogo.nombre + "." + extension;
-        }
-      } else {
-        this.productoCatalogo.fotoProducto = (<HTMLInputElement>document.getElementById("url")).value;
-      }
+      this.verificarFile();
       this.productoCatalogo.unidad = (<HTMLInputElement>document.getElementsByName("unidad")[0]).value;
       if (this.productoCatalogo.nombre && this.productoCatalogo.fotoProducto && this.productoCatalogo.unidad && this.productoCatalogo.precioPorUnidad) {
         this.productoCatalogoService.updateProductoCatalogo(this.productoCatalogo.id, this.productoCatalogo).subscribe(resp => {
           if (this.fileUpload) {
             // @ts-ignore
-            this.productoCatalogoService.putImage(this.productoCatalogo.nombre, extension, file).subscribe(() => {
+            this.productoCatalogoService.putImage(this.productoCatalogo.nombre, this.extension, this.file).subscribe(() => {
               if (resp.status === 200) {
                 alert("El producto del catálogo fue actualizado exitosamente");
                 window.location.href = "/admin/producto-catalogo/list";
@@ -65,6 +55,20 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.eventListenerFile();
+    this.eventListenerRemoveFile();
+    let button = document.getElementById("cancelar");
+    if (button != null) {
+      button.addEventListener("click", () => window.history.back());
+    }
+    button = document.getElementById("modificar")
+    if (button != null) {
+      button.addEventListener("click", () => this.modificar());
+    }
+
+  }
+
+  eventListenerFile(): void {
     let file = <HTMLInputElement>document.getElementById("file");
     if (file != null) {
       file.addEventListener("change", () => {
@@ -81,6 +85,8 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
         }
       });
     }
+  }
+  eventListenerRemoveFile(){
     let removeFile = <HTMLButtonElement>document.getElementById("removeFile");
     if (removeFile != null) {
       removeFile.addEventListener("click", () => {
@@ -96,15 +102,19 @@ export class ProductoCatalogoUpdateComponent implements OnInit {
 
       });
     }
+  }
 
-    let button = document.getElementById("cancelar");
-    if (button != null) {
-      button.addEventListener("click", () => window.history.back());
+  verificarFile(): void {
+    if (this.fileUpload) {
+      let fileElement = <HTMLInputElement>document.getElementById("file")
+      if (fileElement.files != null) {
+        this.file = fileElement.files[0];
+        let split = this.file.name.split(".");
+        this.extension = split[split.length - 1];
+        this.productoCatalogo.fotoProducto = globals.IMAGE_API + "images/" + this.productoCatalogo.nombre + "." + this.extension;
+      }
+    } else {
+      this.productoCatalogo.fotoProducto = (<HTMLInputElement>document.getElementById("url")).value;
     }
-    button = document.getElementById("modificar")
-    if (button != null) {
-      button.addEventListener("click", () => this.modificar());
-    }
-
   }
 }
