@@ -3,18 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'oferta',
-    loadChildren: () => import('./oferta/oferta.module').then(module => module.OfertaModule)
-  },
-  {
-    path: 'pedido',
-    loadChildren: () => import('./pedido/pedido.module').then(module => module.PedidoModule)
-  },
-  {
-    path: 'producto',
-    loadChildren: () => import('./producto/producto.module').then(module => module.ProductoModule)
-  },
-  {
     path: 'producto-catalogo',
     loadChildren: () => import('./producto-catalogo/producto-catalogo.module').then(module => module.ProductoCatalogoModule)
   },

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {ProductorPostulanteService} from "../productor-postulante.service";
 import {ProductorPostulante} from "../productor-postulante";
 import {ActivatedRoute} from "@angular/router";
@@ -11,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductorPostulanteDetailComponent implements OnInit {
 
-  faSearch = faSearch;
   productorPostulanteService: ProductorPostulanteService;
   productorPostulante: ProductorPostulante;
   route:ActivatedRoute

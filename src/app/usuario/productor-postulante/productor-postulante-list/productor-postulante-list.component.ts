@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import { ProductorPostulante } from '../productor-postulante';
 import { ProductorPostulanteService } from '../productor-postulante.service';
-import * as globals from '../../../globals';
 
 @Component({
   selector: 'app-productor-postulante-list',
@@ -11,12 +9,11 @@ import * as globals from '../../../globals';
 })
 export class ProductorPostulanteListComponent implements OnInit {
 
-  faSearch = faSearch;
   productorPostulanteService: ProductorPostulanteService
   productoresPostulante: ProductorPostulante[];
 
   constructor(productorPostulanteService: ProductorPostulanteService) {
-    this.productorPostulanteService = productorPostulanteService    
+    this.productorPostulanteService = productorPostulanteService
   }
 
   compare(a: ProductorPostulante, b: ProductorPostulante) {

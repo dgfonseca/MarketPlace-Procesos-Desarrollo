@@ -12,23 +12,11 @@ export class CanastaService {
   constructor(private http: HttpClient) {
   }
 
-  getCanasta(id: number): Observable<Canasta> {
-    return this.http.get<Canasta>(globals.API_IP + globals.CANASTA + id + "/")
-  }
-
   getCanastas(): Observable<Canasta[]> {
-    return this.http.get<Canasta[]>(globals.API_IP + globals.CANASTA)
-  }
-
-  createCanasta(canasta: Canasta) {
-    return this.http.post<Canasta>(globals.API_IP + globals.CANASTA, canasta)
+    return this.http.get<Canasta[]>(globals.API_IP + globals.CANASTA);
   }
 
   updateCanasta(id: number, canasta: Canasta) {
-    return this.http.put<Canasta>(globals.API_IP + globals.CANASTA + id + "/", canasta, {observe: 'response'})
-  }
-
-  deleteCanasta(id: number) {
-    return this.http.delete<Canasta>(globals.API_IP + globals.CANASTA + id + "/")
+    return this.http.put<Canasta>(globals.API_IP + globals.CANASTA + id + '/', canasta, {observe: 'response'});
   }
 }

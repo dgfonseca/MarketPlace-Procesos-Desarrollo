@@ -1,4 +1,4 @@
-import {Usuario} from '../cliente/usuario';
+import {Usuario} from '../usuario';
 
 export class ProductorPostulante extends Usuario {
   id: number;
