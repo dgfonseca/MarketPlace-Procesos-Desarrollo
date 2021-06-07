@@ -4,6 +4,4 @@
 
 ## Codeship
 [![Codeship Status for dgfonseca/MarketPlace-Procesos-Desarrollo](https://app.codeship.com/projects/01a1ddd2-746e-42de-88c9-b2c763dacf20/status?branch=master)](https://app.codeship.com/projects/443814)
-https://app.codeship.com/projects/01a1ddd2-746e-42de-88c9-b2c763dacf20/status?branch=master
-"!https://app.codeship.com/projects/01a1ddd2-746e-42de-88c9-b2c763dacf20/status?branch=master!":https://app.codeship.com/projects/443814
-{<img src="https://app.codeship.com/projects/01a1ddd2-746e-42de-88c9-b2c763dacf20/status?branch=master" />}[https://app.codeship.com/projects/443814]
+
