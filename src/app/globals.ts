@@ -1,4 +1,4 @@
-export const API_IP = "https://marketplace-procesos-back.herokuapp.com/api/";
+export const API_IP = "https://marketplace-production-release.herokuapp.com/api/";
 export const PRODUCTO_CATALOGO = "producto-catalogo/";
 export const CANASTA = "canasta/";
 export const PRODUCTO = "producto/";
